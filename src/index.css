@@ -1,24 +1,24 @@
 @charset "UTF-8";
 @font-face {
   font-family: 'Roboto';
-  src: url('../../public/fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
-    url('../../public/fonts/Roboto/Roboto-Regular.woff') format('woff');
+  src: url('../public/fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+    url('../public/fonts/Roboto/Roboto-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Roboto';
-  src: url('../../public/fonts/Roboto/Roboto-Medium.woff2') format('woff2'),
-    url('../../public/fonts/Roboto/Roboto-Medium.woff') format('woff');
+  src: url('../public/fonts/Roboto/Roboto-Medium.woff2') format('woff2'),
+    url('../public/fonts/Roboto/Roboto-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Roboto';
-  src: url('../../public/fonts/Roboto/Roboto-Bold.woff2') format('woff2'),
-    url('../../public/fonts/Roboto/Roboto-Bold.woff') format('woff');
+  src: url('../public/fonts/Roboto/Roboto-Bold.woff2') format('woff2'),
+    url('../public/fonts/Roboto/Roboto-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -877,7 +877,7 @@ textarea.field-text__input {
   height: 10px;
   transform: translateY(-50%);
   /* background: url('../img/icon/icon-filter.svg') no-repeat center/contain; */
-  background: url('../../public/img/icon/icon-filter.svg') no-repeat center/contain;
+  background: url('../public/img/icon/icon-filter.svg') no-repeat center/contain;
 }
 .dropdown:hover .dropdown__menu {
   visibility: visible;
@@ -1087,15 +1087,21 @@ input:checked ~ .field-checkbox__name-text:after {
   overflow: hidden;
 }
 .modal {
-  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
   overflow: hidden;
-  background: #f4f5f9;
+  /* background: #f4f5f9; */
   padding: 0;
   width: auto;
   height: auto;
   border: 1px solid #dfe2ed;
   border-radius: 5px;
   -webkit-overflow-scrolling: touch;
+  z-index: 1000;
 }
 .modal--full {
   width: 100%;
@@ -1109,9 +1115,12 @@ input:checked ~ .field-checkbox__name-text:after {
 }
 .modal__dialog {
   position: relative;
+  top: 0;
+  right: -25%;
   margin: 0;
   width: 100%;
   height: 100%;
+  transform: translate(50%, 0);
 }
 .modal__content {
   position: relative;
@@ -2783,6 +2792,7 @@ input:checked ~ .field-checkbox__name-text:after {
 }
 .drop-basket__scroll {
   max-height: 430px;
+  overflow: auto;
 }
 .drop-basket__bas-link {
   color: #3a426d;
@@ -2802,7 +2812,7 @@ input:checked ~ .field-checkbox__name-text:after {
   line-height: 16px;
   color: #3a426d;
   text-align: center;
-  background: url('../../public/img/icon/icon-quan-basket.svg') no-repeat center/contain;
+  background: url('../public/img/icon/icon-quan-basket.svg') no-repeat center/contain;
   z-index: 1;
 }
 .num-prod b {
