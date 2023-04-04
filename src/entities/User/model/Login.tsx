@@ -1,9 +1,10 @@
 import { FC, PropsWithChildren } from 'react'
-import { $user } from '../../../processes/model/app'
 import { useStore } from 'effector-react'
-import { logout } from '../../../processes/model/auth'
 import UserProfile from '../ui/UserProfile'
 import UserAuthorized from '../ui/UserAuthorized'
+
+import { logout } from '../../../processes/model/auth'
+import { $user } from '../../../processes/model/app'
 
 const Login: FC<PropsWithChildren> = () => {
   const { userName, avatar } = useStore($user)

@@ -1,7 +1,9 @@
-import { createEffect, createStore } from 'effector'
+import { createEffect, createEvent, createStore } from 'effector'
 import { TProducts } from './types'
 
-export const fetchProductList = createEffect<void, TProducts>()
+export const updateCategory = createEvent<string>()
+
+export const fetchProductList = createEffect<string[], TProducts>()
 
 export const $productList = createStore<TProducts>([])
 

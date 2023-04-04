@@ -2383,6 +2383,10 @@ input:checked ~ .field-checkbox__name-text:after {
   margin-bottom: 0px;
   padding: 38px 18px 20px;
   border-bottom: 0.5px solid rgba(204, 220, 236, 0.65);
+  cursor: pointer;
+}
+.product-list__title:hover {
+  text-decoration: underline;
 }
 .product-list__list {
   list-style-type: none;

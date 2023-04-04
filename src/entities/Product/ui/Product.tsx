@@ -9,10 +9,10 @@ type TProductProps = {
   login?: string
 }
 
-const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ title, thumbnail }) => {
+const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ title, thumbnail, price }) => {
   const { userName } = useStore($user)
 
-  function handleSubmit(event: FormEvent) {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
   }
 
@@ -30,7 +30,7 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ title, thumb
             <a className="product__wrap-link">
               <h3 className="product__title">{title || 'title'}</h3>
               <strong className="product__price">
-                905 ₽/<sub>упак.</sub>
+                {price} ₽/<sub>упак.</sub>
               </strong>
             </a>
             <div className="add-basket">

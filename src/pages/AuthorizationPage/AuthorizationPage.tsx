@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react'
-import Authorization from '../../widgets/Authorization/ui/Authorization'
+import Authorization from '../../widgets/Authorization'
 
 const AuthorizationPage: FC<PropsWithChildren> = () => {
   return <Authorization />

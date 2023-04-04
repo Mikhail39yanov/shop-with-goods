@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from 'react'
 import Login from '../../entities/User/model/Login'
+import Catalog from '../../entities/Catalog'
 
 const Header: FC<PropsWithChildren> = () => {
   return (
@@ -63,32 +64,7 @@ const Header: FC<PropsWithChildren> = () => {
                 catalog?.classList.remove('active')
               }}
             >
-              <div className="catalog__row">
-                <div className="catalog__col">
-                  <div className="product-list">
-                    <h3 className="product-list__title">Все для пряжи</h3>
-                    <div className="product-list__group">
-                      <div className="product-list__subitem">
-                        <a className="product-list__subtitle js-collapse-hover" href="#">
-                          Журналы для вязания
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="catalog__col">
-                  <div className="product-list">
-                    <h3 className="product-list__title">Швейная фурнитура</h3>
-                    <div className="product-list__group">
-                      <div className="product-list__subitem">
-                        <a className="product-list__subtitle js-collapse-hover" href="#">
-                          Материалы
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Catalog />
             </div>
           </div>
         </div>
