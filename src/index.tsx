@@ -1,11 +1,12 @@
+import './normalize.css'
+import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './app/App'
-import './normalize.css'
-import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
-import '../src/processes/model/init'
+
+import './processes/model/init'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react'
 import HomePage from '../pages/HomePage'
 import Layout from '../shared/UI/Layout'
 import { Route, Routes } from 'react-router-dom'
-import Authorization from '../entities/Authorization/ui/Authorization'
+import Authorization from '../widgets/Authorization/ui/Authorization'
 
 const App: FC<PropsWithChildren> = () => {
   return (

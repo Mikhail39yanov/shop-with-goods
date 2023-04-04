@@ -1,15 +1,14 @@
 import { FC, PropsWithChildren } from 'react'
-import { useStore } from 'effector-react'
 
-import UserProfile from '../../entities/Header/ui/UserProfile'
-import UserBasket from '../../entities/Header/ui/UserBasket'
+import UserProfile from '../../../../entities/Header/ui/UserProfile'
+import UserBasket from '../../../../entities/Header/ui/UserBasket'
+import { THeaderProps } from '../../types/THeaderProps'
 
-import { $user, logout } from '../../processes/model/auth'
-import Profile from '../../shared/Icons/Profile'
-
-const Header: FC<PropsWithChildren> = () => {
-  const { login, avatar } = useStore($user)
-
+const Header: FC<PropsWithChildren<THeaderProps>> = ({
+  handleLogout = () => {},
+  login = undefined,
+  avatar = undefined,
+}) => {
   return (
     <header className="page-header">
       <div className="page-header__top">
@@ -23,10 +22,10 @@ const Header: FC<PropsWithChildren> = () => {
                 <div className="page-header__compare">
                   {login ? (
                     <>
-                      <a href="" onClick={(e) => logout(login)}>
-                        Logout
-                      </a>
-                      {avatar ? <img width="36" height="36" src={avatar} alt="profile pic" /> : null}
+                      <a onClick={handleLogout}>Logout</a>
+                      {avatar ? (
+                        <img style={{ marginLeft: '5px' }} width="36" height="36" src={avatar} alt="profile pic" />
+                      ) : null}
                       <UserBasket />
                     </>
                   ) : (

@@ -16,10 +16,7 @@ const UserProfile: FC<PropsWithChildren> = () => {
       <div className="drop">
         <div className="drop__wrap">
           <div className="drop__item">
-            <Link to={'/auth'}>Войти</Link>
-          </div>
-          <div className="drop__item">
-            <Link to={'/auth'}>Регистрация</Link>
+            <Link to={'/auth'}>Вход/Регистрация</Link>
           </div>
         </div>
       </div>
