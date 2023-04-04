@@ -1,36 +1,19 @@
 import { FC, PropsWithChildren } from 'react'
+import Login from '../../entities/User/model/Login'
 
-import UserProfile from '../../../../entities/Header/ui/UserProfile'
-import UserBasket from '../../../../entities/Header/ui/UserBasket'
-import { THeaderProps } from '../../types/THeaderProps'
-
-const Header: FC<PropsWithChildren<THeaderProps>> = ({
-  handleLogout = () => {},
-  login = undefined,
-  avatar = undefined,
-}) => {
+const Header: FC<PropsWithChildren> = () => {
   return (
     <header className="page-header">
       <div className="page-header__top">
         <div className="container">
           <div className="page-header__row page-header__row--sb">
             <div className="page-header__logo">
-              <h2>Header</h2>
+              <h2 style={{ marginBottom: '0' }}>Header</h2>
             </div>
             <div className="page-header__info">
-              <div className="d-none d-xl-block">
+              <div className="d-xl-block">
                 <div className="page-header__compare">
-                  {login ? (
-                    <>
-                      <a onClick={handleLogout}>Logout</a>
-                      {avatar ? (
-                        <img style={{ marginLeft: '5px' }} width="36" height="36" src={avatar} alt="profile pic" />
-                      ) : null}
-                      <UserBasket />
-                    </>
-                  ) : (
-                    <UserProfile />
-                  )}
+                  <Login />
                 </div>
               </div>
             </div>
@@ -43,7 +26,14 @@ const Header: FC<PropsWithChildren<THeaderProps>> = ({
             <div className="container__left">
               <div className="page-header__row page-header__row--sb">
                 <nav className="navigation">
-                  <button className="burger navigation__burger-sub js-open-catalog" aria-label="Показать каталог">
+                  <button
+                    className="burger navigation__burger-sub js-open-catalog"
+                    aria-label="Показать каталог"
+                    onMouseOver={() => {
+                      const catalog = document.querySelector('.catalog')
+                      catalog?.classList.add('active')
+                    }}
+                  >
                     <span>Показать каталог</span>
                   </button>
                   <ul className="navigation__list">
@@ -66,7 +56,13 @@ const Header: FC<PropsWithChildren<THeaderProps>> = ({
                 </nav>
               </div>
             </div>
-            <div className="catalog">
+            <div
+              className="catalog"
+              onMouseLeave={() => {
+                const catalog = document.querySelector('.catalog')
+                catalog?.classList.remove('active')
+              }}
+            >
               <div className="catalog__row">
                 <div className="catalog__col">
                   <div className="product-list">

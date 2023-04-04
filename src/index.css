@@ -3573,3 +3573,10 @@ input:checked ~ .field-checkbox__name-text:after {
     text-align: center;
   }
 }
+
+@media (max-width: 1200px) {
+  .modal__dialog {
+    right: 0;
+    transform: translate(0, 0);
+  }
+}

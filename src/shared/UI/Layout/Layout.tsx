@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from 'react'
 import Footer from '../../../widgets/Footer'
-import HeaderContainer from '../../../widgets/HeaderContainer'
+import Header from '../../../widgets/Header'
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="page__inner">
       <div className="page__content">
-        <HeaderContainer />
+        <Header />
         {children}
       </div>
       <Footer />

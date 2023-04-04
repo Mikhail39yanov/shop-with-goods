@@ -1,11 +1,11 @@
 import { createEffect, createStore } from 'effector'
 
-import { User } from './types'
+import { TUser } from './types'
 
-export const manageProviderAuth = createEffect<void, User>()
+export const manageProviderAuth = createEffect<void, TUser>()
 
-export const $user = createStore<User>({
-  login: '',
+export const $user = createStore<TUser>({
+  userName: '',
 })
 
 // $user.watch((user) => {

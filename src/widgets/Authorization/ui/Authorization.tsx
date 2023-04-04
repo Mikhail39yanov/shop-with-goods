@@ -1,23 +1,32 @@
-import { ChangeEvent, FC, FormEvent, PropsWithChildren, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, PropsWithChildren } from 'react'
 import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 
-import { auth } from '../../../processes/model/auth'
+import { $regInForm, auth, updateRegForm } from '../../../processes/model/auth'
+import { useStore } from 'effector-react'
 
 const Authorization: FC<PropsWithChildren> = () => {
-  const [login, setLogin] = useState('')
+  const { login, password } = useStore($regInForm)
+
+  const userStringify = JSON.stringify({ login, password })
 
   const navigate = useNavigate()
   const goMain = () => navigate('/')
 
-  function handleSubmit(event: FormEvent) {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    sessionStorage.setItem('token', login)
+    sessionStorage.setItem('token', userStringify)
     auth()
     goMain()
   }
 
-  const handleChangeLogin = (event: ChangeEvent<HTMLInputElement>) => setLogin(event.target.value)
+  const handleChangeLogin = (event: ChangeEvent<HTMLInputElement>) => {
+    updateRegForm({ value: event.target.value, fieldName: 'login' })
+  }
+
+  const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    updateRegForm({ value: event.target.value, fieldName: 'password' })
+  }
 
   const modalRoot = document.getElementById('modal-root')
   if (!modalRoot) return null
@@ -43,9 +52,10 @@ const Authorization: FC<PropsWithChildren> = () => {
                     <input
                       className="field-text__input"
                       type="text"
-                      name="name"
+                      name="login"
                       required
                       onChange={handleChangeLogin}
+                      value={login}
                     />
                   </span>
                 </label>
@@ -56,12 +66,19 @@ const Authorization: FC<PropsWithChildren> = () => {
                     password <span>*</span>
                   </span>
                   <span className="field-text__input-wrap">
-                    <input className="field-text__input" type="text" name="password" required onChange={() => {}} />
+                    <input
+                      className="field-text__input"
+                      type="password"
+                      name="password"
+                      required
+                      onChange={handleChangePassword}
+                      value={password}
+                    />
                   </span>
                 </label>
               </div>
               <button type="submit" className="btn btn--s-middle btn--main">
-                Оформить заказ
+                Зарегистрироваться
               </button>
             </form>
           </div>

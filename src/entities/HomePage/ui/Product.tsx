@@ -10,7 +10,7 @@ type TProductProps = {
 }
 
 const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ title, thumbnail }) => {
-  const { login } = useStore($user)
+  const { userName } = useStore($user)
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
@@ -34,7 +34,7 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ title, thumb
               </strong>
             </a>
             <div className="add-basket">
-              {login ? (
+              {userName ? (
                 <div className="add-basket">
                   <form className="add-basket__row" onSubmit={handleSubmit}>
                     <div className="field-num add-basket__num">
