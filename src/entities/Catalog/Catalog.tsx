@@ -14,6 +14,8 @@ const Catalog: FC<PropsWithChildren> = () => {
             <h3
               className="product-list__title"
               onClick={() => {
+                const catalog = document.querySelector('.catalog')
+                catalog?.classList.remove('active')
                 updateCategory(item)
               }}
             >

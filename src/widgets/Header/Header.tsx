@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren } from 'react'
 import Login from '../../entities/User/model/Login'
 import Catalog from '../../entities/Catalog'
+import { Link } from 'react-router-dom'
 
 const Header: FC<PropsWithChildren> = () => {
   return (
@@ -9,6 +10,13 @@ const Header: FC<PropsWithChildren> = () => {
         <div className="container">
           <div className="page-header__row page-header__row--sb">
             <div className="page-header__logo">
+              <div className="d-xl-none">
+                <Link to={'/mobile'}>
+                  <button className="burger page-header__menu js-menu" aria-label="Показать ничто">
+                    <span>Показать ничто</span>
+                  </button>
+                </Link>
+              </div>
               <h2 style={{ marginBottom: '0' }}>Header</h2>
             </div>
             <div className="page-header__info">
