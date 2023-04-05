@@ -30,7 +30,3 @@ sample({
   },
   target: fetchProductList,
 })
-
-// fetchProductList.done.watch(({ result }) => {
-//   console.log($productList)
-// })

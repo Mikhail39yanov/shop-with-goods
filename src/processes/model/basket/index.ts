@@ -5,6 +5,6 @@ export const updateBasket = createEvent<TBasket>()
 
 export const $basket = createStore<TBaskets>([])
 
-$basket.watch((item) => {
-  console.log(item)
-})
+// $basket.watch((item) => {
+//   console.log(item)
+// })

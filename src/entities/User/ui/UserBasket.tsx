@@ -2,6 +2,7 @@ import { FC, PropsWithChildren } from 'react'
 import Basket from '../../../shared/Icons/Basket'
 import { useStore } from 'effector-react'
 import { $basket } from '../../../processes/model/basket'
+import { sum } from '../utils/sum'
 
 const UserBasket: FC<PropsWithChildren> = () => {
   const basket = useStore($basket)
@@ -49,7 +50,7 @@ const UserBasket: FC<PropsWithChildren> = () => {
             </div>
             <footer className="drop-basket__header drop-basket__header--bg drop-basket__header--sb">
               <strong className="drop-basket__header-price">
-                <span>Всего:</span> 0 ₽
+                <span>Всего:</span> {sum(basket)} ₽
               </strong>
               <a className="btn btn--main">Оформить заказ</a>
             </footer>
