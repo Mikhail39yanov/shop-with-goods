@@ -25,16 +25,11 @@ sample({
 sample({
   source: $catalogList,
   clock: updateCategory,
-  fn: (categories, item) => {
+  fn: (_, item) => {
     return [item]
   },
   target: fetchProductList,
 })
-
-// forward({
-//   from: updateCategory,
-//   to: fetchProductList,
-// })
 
 // fetchProductList.done.watch(({ result }) => {
 //   console.log($productList)

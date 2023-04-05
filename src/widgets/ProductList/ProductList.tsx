@@ -12,7 +12,7 @@ const ProductList: FC<PropsWithChildren> = () => {
       {productList.length === 0 && <h2>Список пуст</h2>}
 
       {productList.map((item) => (
-        <Product key={item.id} title={item.title} thumbnail={item.thumbnail} price={item.price} />
+        <Product key={item.id} id={item.id} title={item.title} thumbnail={item.thumbnail} price={item.price} />
       ))}
     </div>
   )

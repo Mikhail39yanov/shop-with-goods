@@ -1,7 +1,11 @@
 import { FC, PropsWithChildren } from 'react'
 import Basket from '../../../shared/Icons/Basket'
+import { useStore } from 'effector-react'
+import { $basket } from '../../../processes/model/basket'
 
 const UserBasket: FC<PropsWithChildren> = () => {
+  const basket = useStore($basket)
+
   return (
     <div className="compare page-header__basket">
       <div className="compare__row">
@@ -10,7 +14,7 @@ const UserBasket: FC<PropsWithChildren> = () => {
         </a>
         <div className="compare__content">
           <strong>Корзина</strong>
-          <span className="compare__quan">5</span>
+          <span className="compare__quan">{basket.length || 0}</span>
         </div>
       </div>
       <div className="drop drop--basket">
@@ -27,22 +31,25 @@ const UserBasket: FC<PropsWithChildren> = () => {
                   </div>
                 </div>
                 <div className="baron__scroller">
-                  <a className="drop-basket__item" href="catalog-single.html">
-                    <div className="drop-basket__img">
-                      <img src="img/content/product-1.png" alt="Show punto batİk design" />
-                    </div>
-                    <div className="drop-basket__content">
-                      <h3 className="drop-basket__title">Show punto batİk design</h3>
-                      <span className="drop-basket__qual">4 упак.</span>
-                      <span className="drop-basket__price">7 999 ₽</span>
-                    </div>
-                  </a>
+                  {basket.length === 0 && <div className="drop-basket__item">Пусто</div>}
+                  {basket.map((item) => (
+                    <a key={item.id} className="drop-basket__item" href="catalog-single.html">
+                      <div className="drop-basket__img">
+                        <img src={item.thumbnail || 'img/content/product-1.png'} alt="Show punto batİk design" />
+                      </div>
+                      <div className="drop-basket__content">
+                        <h3 className="drop-basket__title">{item.title || 'title'}</h3>
+                        <span className="drop-basket__qual">{item.count || '10'} упак.</span>
+                        <span className="drop-basket__price">{item.price || 0} ₽</span>
+                      </div>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
             <footer className="drop-basket__header drop-basket__header--bg drop-basket__header--sb">
               <strong className="drop-basket__header-price">
-                <span>Всего:</span> 10 860 ₽
+                <span>Всего:</span> 0 ₽
               </strong>
               <a className="btn btn--main">Оформить заказ</a>
             </footer>

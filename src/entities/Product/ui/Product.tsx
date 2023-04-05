@@ -1,19 +1,42 @@
-import { FC, FormEvent, PropsWithChildren } from 'react'
+import { ChangeEvent, FC, FormEvent, PropsWithChildren, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useStore } from 'effector-react'
 import { $user } from '../../../processes/model/app'
 import { TProduct } from '../../../processes/model/product/types'
+import { updateBasket } from '../../../processes/model/basket'
 
 type TProductProps = {
   login?: string
 }
 
-const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ title, thumbnail, price }) => {
+const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ id, title, thumbnail, price }) => {
+  const [value, setValue] = useState('0')
   const { userName } = useStore($user)
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
+    updateBasket({ id, title, count: value, thumbnail, price })
+  }
+
+  const handleDecrement = () => {
+    setValue((prev) => {
+      const str = Number(prev) + 1
+      return String(str)
+    })
+  }
+  const handleIncrement = () => {
+    setValue((prev) => {
+      if (prev === '0') {
+        return prev
+      }
+      const str = Number(prev) - 1
+      return String(str)
+    })
+  }
+
+  const handleOnchange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value)
   }
 
   return (
@@ -40,20 +63,30 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ title, thumb
                     <div className="field-num add-basket__num">
                       <span className="field-num__input-wrap">
                         <span className="field-num__input-and-btns">
-                          <button className="field-num__btn field-num__btn--minus" type="button">
+                          <button
+                            className="field-num__btn field-num__btn--minus"
+                            type="button"
+                            onClick={handleIncrement}
+                          >
                             -
                           </button>
-                          <button className="field-num__btn field-num__btn--plus" type="button">
+                          <button
+                            className="field-num__btn field-num__btn--plus"
+                            type="button"
+                            onClick={handleDecrement}
+                          >
                             +
                           </button>
                           <input
                             className="field-num__input"
                             type="number"
-                            defaultValue="0"
+                            // defaultValue="0"
+                            value={value}
                             name="quantity"
                             max="1000"
                             min="0"
                             step="1"
+                            onChange={handleOnchange}
                           />
                         </span>
                       </span>
