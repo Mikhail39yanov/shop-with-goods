@@ -9,7 +9,7 @@ forward({
   to: manageProviderAuth,
 })
 
-$regInForm.on(updateRegForm, (form, { fieldName, value }) => ({
+$regInForm.on(updateRegForm, (form, { key, value }) => ({
   ...form,
-  [fieldName]: value,
+  [key]: value,
 }))
