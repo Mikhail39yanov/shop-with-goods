@@ -1,5 +1,5 @@
 import { forward, sample } from 'effector'
-import { $productList, fetchProductList, load, loadProductList, updateCategory } from '.'
+import { $currentCatalog, $productList, fetchProductList, load, loadProductList, updateCategory } from '.'
 import { $catalogList, fetchCatalogList } from '../catalog'
 
 fetchProductList.use(async (payload) => {
@@ -13,8 +13,8 @@ fetchProductList.use(async (payload) => {
   return products
 })
 
-loadProductList.use(async () => {
-  const url = `https://dummyjson.com/products/category/smartphones?skip=2&limit=4`
+loadProductList.use(async (payload) => {
+  const url = `https://dummyjson.com/products/category/${payload}?skip=2&limit=4`
   const { products } = await fetch(url).then((response) => response.json())
   return products
 })
@@ -25,17 +25,21 @@ $productList.on(loadProductList.doneData, (list, product) => {
   return [...list, ...product]
 })
 
-forward({
-  from: load,
-  to: loadProductList,
+$currentCatalog.on(updateCategory, (_, cat) => {
+  return cat
 })
 
-// sample({
-//   source: $productList,
-//   clock: load,
-//   fn: (categories) => categories,
-//   target: loadProductList,
-// })
+sample({
+  source: $currentCatalog,
+  clock: load,
+  fn: (categories) => {
+    if (typeof categories === 'object') {
+      return ['smartphones']
+    }
+    return [categories.toString()]
+  },
+  target: loadProductList,
+})
 
 sample({
   source: $catalogList,
