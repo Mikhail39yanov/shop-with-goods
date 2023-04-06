@@ -11,7 +11,7 @@ const MobileMenuPage: FC<PropsWithChildren> = () => {
             <div className="page-header__row page-header__row--sb">
               <div className="page-header__logo">
                 <div className="d-xl-none">
-                  <Link to={'/'}>
+                  <Link to={'/shop-with-goods'}>
                     <button
                       className="close page-header__menu"
                       aria-label="Закрыть меню"
@@ -48,14 +48,15 @@ const MobileMenuPage: FC<PropsWithChildren> = () => {
             </div>
             <ul className="navigation__list">
               <li className="navigation__item">
-                <a className="navigation__link" href="template-page.html">
+                <Link className="navigation__link" to={'/about'}>
                   О компании
-                </a>
+                </Link>
               </li>
+
               <li className="navigation__item">
-                <a className="navigation__link" href="news.html">
+                <Link className="navigation__link" to={'/news'}>
                   Новости
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

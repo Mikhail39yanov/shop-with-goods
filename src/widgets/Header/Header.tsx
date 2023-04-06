@@ -50,7 +50,7 @@ const Header: FC<PropsWithChildren> = () => {
                       <a className="navigation__link">Каталог</a>
                     </li> */}
                     <li className="navigation__item">
-                      <Link className="navigation__link" to={'/'}>
+                      <Link className="navigation__link" to={'/shop-with-goods'}>
                         На главную
                       </Link>
                     </li>

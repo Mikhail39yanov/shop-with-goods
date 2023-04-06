@@ -18,7 +18,7 @@ const CatalogMobile: FC<PropsWithChildren> = () => {
             updateCategory(item)
           }}
         >
-          <Link to={'/'}>{item}</Link>
+          <Link to={'/shop-with-goods'}>{item}</Link>
         </h3>
       ))}
     </>

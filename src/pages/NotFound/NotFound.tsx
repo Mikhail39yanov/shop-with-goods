@@ -6,7 +6,7 @@ const NotFound: FC<PropsWithChildren> = () => {
     <>
       <h1 style={{ textAlign: 'center', marginTop: '1rem' }}>404 — страница не найдена</h1>
       <p style={{ textAlign: 'center' }}>
-        <Link to={'/'}>Вернуться на главную</Link>
+        <Link to={'/shop-with-goods'}>Вернуться на главную</Link>
       </p>
     </>
   )

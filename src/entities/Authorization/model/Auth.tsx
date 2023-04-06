@@ -13,7 +13,7 @@ const Auth: FC<PropsWithChildren> = () => {
   const userStringify = JSON.stringify({ login, password })
 
   const navigate = useNavigate()
-  const goMain = () => navigate('/')
+  const goMain = () => navigate('/shop-with-goods')
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()

@@ -20,7 +20,7 @@ const AuthModal: FC<PropsWithChildren<TAuthModal>> = ({
       <div className="modal__dialog" role="document">
         <div className="modal__content">
           <div className="modal__header">
-            <Link to={'/'}>
+            <Link to={'/shop-with-goods'}>
               <span className="close modal__close" data-fancybox-close="" aria-label="Закрыть">
                 <span></span>
               </span>
