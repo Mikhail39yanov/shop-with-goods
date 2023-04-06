@@ -9,7 +9,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@testing-library/react": "^13.4.0",
@@ -20,6 +22,7 @@
     "classnames": "^2.3.2",
     "effector": "^22.7.0",
     "effector-react": "^22.5.1",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
@@ -38,5 +41,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mikhail39yanov/shop-with-goods.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mikhail39yanov/shop-with-goods/issues"
+  },
+  "homepage": "https://github.com/Mikhail39yanov/shop-with-goods"
 }

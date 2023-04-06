@@ -13,7 +13,7 @@ const App: FC<PropsWithChildren> = () => {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/shop-with-goods" element={<HomePage />} />
         <Route path="/auth" element={<AuthorizationPage />} />
         <Route path="/mobile" element={<MobileMenuPage />} />
         <Route path="/buy" element={<SuccessfulPurchase />} />
