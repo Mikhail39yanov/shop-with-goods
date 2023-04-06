@@ -1,6 +1,6 @@
-import { $basket, updateBasket } from '.'
+import { $basket, updateBasket, resetBasket } from '.'
 
-$basket.on(updateBasket, (basket, product) => {
+$basket.reset(resetBasket).on(updateBasket, (basket, product) => {
   if (product.count === '0') {
     return
   }

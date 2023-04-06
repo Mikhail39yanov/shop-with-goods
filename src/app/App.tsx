@@ -4,6 +4,10 @@ import Layout from '../shared/UI/Layout'
 import { Route, Routes } from 'react-router-dom'
 import AuthorizationPage from '../pages/AuthorizationPage'
 import MobileMenuPage from '../pages/MobileMenuPage'
+import SuccessfulPurchase from '../widgets/SuccessfulPurchase'
+import NotFound from '../pages/NotFound'
+import About from '../pages/About'
+import News from '../pages/News'
 
 const App: FC<PropsWithChildren> = () => {
   return (
@@ -12,6 +16,10 @@ const App: FC<PropsWithChildren> = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthorizationPage />} />
         <Route path="/mobile" element={<MobileMenuPage />} />
+        <Route path="/buy" element={<SuccessfulPurchase />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/news" element={<News />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   )

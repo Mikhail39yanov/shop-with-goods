@@ -46,20 +46,23 @@ const Header: FC<PropsWithChildren> = () => {
                     <span>Показать каталог</span>
                   </button>
                   <ul className="navigation__list">
+                    {/* <li className="navigation__item">
+                      <a className="navigation__link">Каталог</a>
+                    </li> */}
                     <li className="navigation__item">
-                      <a className="navigation__link" href="catalog.html">
-                        Каталог
-                      </a>
+                      <Link className="navigation__link" to={'/'}>
+                        На главную
+                      </Link>
                     </li>
                     <li className="navigation__item">
-                      <a className="navigation__link" href="template-page.html">
+                      <Link className="navigation__link" to={'/about'}>
                         О компании
-                      </a>
+                      </Link>
                     </li>
                     <li className="navigation__item">
-                      <a className="navigation__link" href="news.html">
+                      <Link className="navigation__link" to={'/news'}>
                         Новости
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </nav>

@@ -1,8 +1,9 @@
 import { FC, PropsWithChildren } from 'react'
 import Basket from '../../../shared/Icons/Basket'
 import { useStore } from 'effector-react'
-import { $basket } from '../../../processes/model/basket'
+import { $basket, resetBasket } from '../../../processes/model/basket'
 import { sum } from '../utils/sum'
+import { Link } from 'react-router-dom'
 
 const UserBasket: FC<PropsWithChildren> = () => {
   const basket = useStore($basket)
@@ -52,7 +53,19 @@ const UserBasket: FC<PropsWithChildren> = () => {
               <strong className="drop-basket__header-price">
                 <span>Всего:</span> {sum(basket)} ₽
               </strong>
-              <a className="btn btn--main">Оформить заказ</a>
+              {basket.length === 0 ? (
+                <a className="btn btn--main">Оформить заказ</a>
+              ) : (
+                <Link
+                  to={'/buy'}
+                  className="btn btn--main"
+                  onClick={() => {
+                    resetBasket()
+                  }}
+                >
+                  Оформить заказ
+                </Link>
+              )}
             </footer>
           </div>
         </div>

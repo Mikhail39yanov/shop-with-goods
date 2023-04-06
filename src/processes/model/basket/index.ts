@@ -2,6 +2,7 @@ import { createEvent, createStore } from 'effector'
 import { TBasket, TBaskets } from './types'
 
 export const updateBasket = createEvent<TBasket>()
+export const resetBasket = createEvent()
 
 export const $basket = createStore<TBaskets>([])
 
