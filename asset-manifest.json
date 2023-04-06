@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Mikhail39yanov/shop-with-goods/static/css/main.0a79ab33.css",
+    "main.js": "/Mikhail39yanov/shop-with-goods/static/js/main.c400d84f.js",
+    "static/js/787.a07b584e.chunk.js": "/Mikhail39yanov/shop-with-goods/static/js/787.a07b584e.chunk.js",
+    "static/media/Roboto-Medium.woff": "/Mikhail39yanov/shop-with-goods/static/media/Roboto-Medium.b14ca2d2b289afceb0b0.woff",
+    "static/media/Roboto-Bold.woff": "/Mikhail39yanov/shop-with-goods/static/media/Roboto-Bold.3f2cbde6b72e8d05669f.woff",
+    "static/media/Roboto-Regular.woff": "/Mikhail39yanov/shop-with-goods/static/media/Roboto-Regular.31012f9b3e3da44f87e8.woff",
+    "static/media/Roboto-Medium.woff2": "/Mikhail39yanov/shop-with-goods/static/media/Roboto-Medium.c0ba7690a96b0b25a53d.woff2",
+    "static/media/Roboto-Bold.woff2": "/Mikhail39yanov/shop-with-goods/static/media/Roboto-Bold.8ec0d99ca7abdf18e44f.woff2",
+    "static/media/Roboto-Regular.woff2": "/Mikhail39yanov/shop-with-goods/static/media/Roboto-Regular.c1e074f52d2cc507b0df.woff2",
+    "static/media/icon-quan-basket.svg": "/Mikhail39yanov/shop-with-goods/static/media/icon-quan-basket.e4b5496cbc8831cfc114.svg",
+    "index.html": "/Mikhail39yanov/shop-with-goods/index.html",
+    "static/media/icon-filter.svg": "/Mikhail39yanov/shop-with-goods/static/media/icon-filter.0c85a613d3a47dceef4f.svg",
+    "main.0a79ab33.css.map": "/Mikhail39yanov/shop-with-goods/static/css/main.0a79ab33.css.map",
+    "main.c400d84f.js.map": "/Mikhail39yanov/shop-with-goods/static/js/main.c400d84f.js.map",
+    "787.a07b584e.chunk.js.map": "/Mikhail39yanov/shop-with-goods/static/js/787.a07b584e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a79ab33.css",
+    "static/js/main.c400d84f.js"
+  ]
+}
