@@ -11,7 +11,7 @@ const ProductList: FC<PropsWithChildren> = () => {
     <div className="content__row content__row--xs-6 content__row--col-mb count-hide">
       {productList.length === 0 && <h2>Список пуст</h2>}
 
-      {productList.map((item) => (
+      {productList.map((item, i) => (
         <ProductModel
           key={item.id}
           id={item.id}

@@ -2,8 +2,11 @@ import { FC, PropsWithChildren } from 'react'
 
 import ProductList from '../../widgets/ProductList'
 import FilterModel from '../../entities/Filter/model/FilterModel'
+import { $productList, load } from '../../processes/model/product'
+import { useStore } from 'effector-react'
 
 const HomePage: FC<PropsWithChildren> = () => {
+  const productList = useStore($productList)
   return (
     <main>
       <div className="content">
@@ -13,7 +16,18 @@ const HomePage: FC<PropsWithChildren> = () => {
           </header>
           <FilterModel />
           <ProductList />
-          {/* <button className="btn btn--lighten btn--s-big content__btn-more js-show-more">Показать больше</button> */}
+          {productList.length >= 5 ? (
+            <></>
+          ) : (
+            <button
+              className="btn btn--lighten btn--s-big content__btn-more js-show-more"
+              onClick={() => {
+                load()
+              }}
+            >
+              Показать больше
+            </button>
+          )}
         </div>
       </div>
     </main>

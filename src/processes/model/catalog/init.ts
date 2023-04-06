@@ -1,6 +1,4 @@
-import { forward, sample } from 'effector'
 import { $catalogList, fetchCatalogList } from '.'
-import { $productList, fetchProductList } from '../product'
 
 fetchCatalogList.use(async () => {
   const url = `https://dummyjson.com/products/categories`
