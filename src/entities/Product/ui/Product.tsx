@@ -1,43 +1,23 @@
-import { ChangeEvent, FC, FormEvent, PropsWithChildren, useState } from 'react'
+import { FC, PropsWithChildren } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useStore } from 'effector-react'
 import { $user } from '../../../processes/model/app'
 import { TProduct } from '../../../processes/model/product/types'
-import { updateBasket } from '../../../processes/model/basket'
+import { TProductProps } from '../types/TProductProps'
 
-type TProductProps = {
-  login?: string
-}
-
-const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ id, title, thumbnail, price, rating }) => {
-  const [value, setValue] = useState('0')
+const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({
+  title,
+  thumbnail,
+  price,
+  rating,
+  handleSubmit,
+  handleIncrement,
+  handleDecrement,
+  handleOnchange,
+  value,
+}) => {
   const { userName } = useStore($user)
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    updateBasket({ id, title, count: value, thumbnail, price })
-  }
-
-  const handleDecrement = () => {
-    setValue((prev) => {
-      const str = Number(prev) + 1
-      return String(str)
-    })
-  }
-  const handleIncrement = () => {
-    setValue((prev) => {
-      if (prev === '0') {
-        return prev
-      }
-      const str = Number(prev) - 1
-      return String(str)
-    })
-  }
-
-  const handleOnchange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
-  }
 
   return (
     <div className="content__col content__col--6 content__col--md-4 content__col--xl-6" data-filter="advice">

@@ -82,7 +82,7 @@ sample({
     const result = filteredArray.filter((item) => {
       if (item.price) {
         if (item.price >= filteredRange.min && item.price <= filteredRange.max) {
-          console.log(item)
+          // console.log(item)
           return item
         }
       }

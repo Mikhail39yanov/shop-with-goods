@@ -2,7 +2,7 @@ import { useStore } from 'effector-react'
 import { FC, PropsWithChildren } from 'react'
 
 import { $productList } from '../../processes/model/product'
-import Product from '../../entities/Product/ui/Product'
+import ProductModel from '../../entities/Product/model/ProductModel'
 
 const ProductList: FC<PropsWithChildren> = () => {
   const productList = useStore($productList)
@@ -12,7 +12,7 @@ const ProductList: FC<PropsWithChildren> = () => {
       {productList.length === 0 && <h2>Список пуст</h2>}
 
       {productList.map((item) => (
-        <Product
+        <ProductModel
           key={item.id}
           id={item.id}
           title={item.title}
