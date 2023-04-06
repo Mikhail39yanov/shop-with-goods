@@ -12,6 +12,6 @@ export const loadProductList = createEffect<void, TProducts>()
 
 export const $productList = createStore<TProducts>([])
 
-$productList.watch((item) => {
-  console.log(item)
-})
+// $productList.watch((item) => {
+//   console.log(item)
+// })
