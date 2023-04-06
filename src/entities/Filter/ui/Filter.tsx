@@ -1,12 +1,32 @@
-import React, { FC, FormEvent, PropsWithChildren, useRef } from 'react'
-import { sortProducts } from '../../../processes/model/filter'
+import React, { ChangeEvent, FC, FormEvent, PropsWithChildren, useRef } from 'react'
+import { $filterList, filterProducts, sortProducts, updateMax, updateMin } from '../../../processes/model/filter'
+import classnames from 'classnames'
+import { useStore } from 'effector-react'
 
 const Filter: FC<PropsWithChildren> = () => {
-  const refSort = useRef<HTMLUListElement>(null)
+  // Фильтрация
+  const { min, max } = useStore($filterList)
+  const minValRef = useRef<HTMLInputElement>(null)
+  const maxValRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
+    filterProducts()
   }
+
+  const onChangeLeftTrack = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = Math.min(+event.target.value, max - 1)
+    event.target.value = value.toString()
+    updateMin({ value: value, key: 'min' })
+  }
+  const onChangeRightTrack = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(+event.target.value, min + 1)
+    updateMax({ value: value, key: 'max' })
+    event.target.value = value.toString()
+  }
+
+  /// Сортировка
+  const refSort = useRef<HTMLUListElement>(null)
 
   const changeClassActiveSort = () => {
     if (refSort.current) {
@@ -76,14 +96,31 @@ const Filter: FC<PropsWithChildren> = () => {
                     <strong className="filter__title">Цена</strong>
                     <div className="filter__fieldset">
                       <div className="filter__field-row">
-                        <input type="number" defaultValue={0} id="input-range-0" required />
-                        <input type="number" defaultValue={100000} id="input-range-1" required />
+                        <input type="number" value={min} id="input-range-0" required onChange={onChangeLeftTrack} />
+                        <input type="number" value={max} id="input-range-1" required onChange={onChangeRightTrack} />
                       </div>
-                      <div className="range" id="slider-range">
-                        <div className="range__line" style={{ width: '120px' }}>
-                          <button className="range__tumbler" type="button"></button>
-                          <button className="range__tumbler" style={{ width: '120px' }} type="button"></button>
-                        </div>
+                      <div className="slider">
+                        <div className="slider__track" />
+                        <input
+                          type="range"
+                          min={0}
+                          max={10000}
+                          value={min}
+                          ref={minValRef}
+                          onChange={onChangeLeftTrack}
+                          className={classnames('thumb thumb--zindex-3', {
+                            'thumb--zindex-5': min > 10000 - 100,
+                          })}
+                        />
+                        <input
+                          type="range"
+                          min={0}
+                          max={10000}
+                          value={max}
+                          ref={maxValRef}
+                          onChange={onChangeRightTrack}
+                          className="thumb thumb--zindex-4"
+                        />
                       </div>
                     </div>
                   </div>

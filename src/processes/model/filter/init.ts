@@ -1,11 +1,22 @@
 import { sample } from 'effector'
 import { $productList } from '../product'
-import { sortProducts } from '.'
+import { $filterList, filterProducts, sortProducts, updateMax, updateMin } from '.'
 import { TProducts } from '../product/types'
+import { TFilterRangeProduct } from './types'
+
+$filterList
+  .on(updateMin, (form, { key, value }) => ({
+    ...form,
+    [key]: value,
+  }))
+  .on(updateMax, (form, { key, value }) => ({
+    ...form,
+    [key]: value,
+  }))
 
 sample({
   source: $productList,
-  clock: [sortProducts],
+  clock: sortProducts,
   fn: (array, column) => {
     function sortItems(arrayProduct: TProducts, column = 'default', dir = false) {
       if (column === 'rating') {
@@ -56,6 +67,29 @@ sample({
     copyArr = sortItems(copyArr, column) || []
 
     return copyArr
+  },
+  target: $productList,
+})
+
+sample({
+  source: [$productList, $filterList],
+  clock: [filterProducts],
+  fn: (arrProduct, itemList) => {
+    const filteredArray = arrProduct[0] as TProducts
+    const filteredRange = arrProduct[1] as TFilterRangeProduct
+    // console.log(arrProduct, itemList)
+
+    const result = filteredArray.filter((item) => {
+      if (item.price) {
+        if (item.price >= filteredRange.min && item.price <= filteredRange.max) {
+          console.log(item)
+          return item
+        }
+      }
+      return null
+    })
+
+    return result
   },
   target: $productList,
 })

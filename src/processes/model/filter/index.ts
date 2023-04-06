@@ -1,14 +1,15 @@
-import { createEvent } from 'effector'
+import { createEvent, createStore } from 'effector'
+import { TFilterRangeProduct } from './types'
 
 export const sortProducts = createEvent<string>()
-// export const sortIncrement = createEvent()
-// export const sortDecrement = createEvent()
+export const filterProducts = createEvent()
+export const updateMin = createEvent<{ value: number; key: string }>()
+export const updateMax = createEvent<{ value: number; key: string }>()
 
-// export const $filterList = createStore({
-//   sortRating: '',
-//   sortIncrement: '',
-//   sortDecrement: '',
-// })
+export const $filterList = createStore<TFilterRangeProduct>({
+  min: 0,
+  max: 10000,
+})
 
 // $filterList.watch((item) => {
 //   console.log(item)
