@@ -1,4 +1,4 @@
-import { forward, sample } from 'effector'
+import { sample } from 'effector'
 import { $productList, fetchProductList, updateCategory } from '.'
 import { $catalogList, fetchCatalogList } from '../catalog'
 

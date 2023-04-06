@@ -2,7 +2,6 @@ import { createEffect, createEvent, createStore } from 'effector'
 import { TProducts } from './types'
 
 export const updateCategory = createEvent<string>()
-
 export const updateDecrement = createEvent()
 export const updateIncrement = createEvent()
 

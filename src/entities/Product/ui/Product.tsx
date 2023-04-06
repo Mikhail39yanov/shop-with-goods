@@ -10,7 +10,7 @@ type TProductProps = {
   login?: string
 }
 
-const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ id, title, thumbnail, price }) => {
+const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ id, title, thumbnail, price, rating }) => {
   const [value, setValue] = useState('0')
   const { userName } = useStore($user)
 
@@ -55,6 +55,7 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({ id, title, t
               <strong className="product__price">
                 {price} ₽/<sub>упак.</sub>
               </strong>
+              <strong className="product__price">rating:{rating}</strong>
             </a>
             <div className="add-basket">
               {userName ? (

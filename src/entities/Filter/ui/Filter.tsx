@@ -1,6 +1,54 @@
-import { FC, PropsWithChildren } from 'react'
+import React, { FC, FormEvent, PropsWithChildren, useRef } from 'react'
+import { sortProducts } from '../../../processes/model/filter'
 
 const Filter: FC<PropsWithChildren> = () => {
+  const refSort = useRef<HTMLUListElement>(null)
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+  }
+
+  const changeClassActiveSort = () => {
+    if (refSort.current) {
+      for (let i = 0; i < refSort.current.children.length; i++) {
+        const element = refSort.current.children[i].children[0]
+        element.classList.remove('sort__link--active')
+      }
+    }
+  }
+
+  const handleSortRating = (event: React.SyntheticEvent) => {
+    if (event.currentTarget.classList.contains('sort__link--active')) {
+      event.currentTarget.classList.remove('sort__link--active')
+    } else {
+      changeClassActiveSort()
+
+      event.currentTarget.classList.add('sort__link--active')
+      sortProducts('rating')
+    }
+  }
+
+  const handleSortDown = (event: React.SyntheticEvent) => {
+    if (event.currentTarget.classList.contains('sort__link--active')) {
+      event.currentTarget.classList.remove('sort__link--active')
+    } else {
+      changeClassActiveSort()
+
+      event.currentTarget.classList.add('sort__link--active')
+      sortProducts('down')
+    }
+  }
+
+  const handleSortUP = (event: React.SyntheticEvent) => {
+    if (event.currentTarget.classList.contains('sort__link--active')) {
+      event.currentTarget.classList.remove('sort__link--active')
+    } else {
+      changeClassActiveSort()
+      event.currentTarget.classList.add('sort__link--active')
+      sortProducts('up')
+    }
+  }
+
   return (
     <div className="filter-block content__filter-block">
       <div className="filter-block__row filter-block__row--xl-sb filter-block__row--xl-row">
@@ -16,7 +64,7 @@ const Filter: FC<PropsWithChildren> = () => {
             Фильтр по параметрам
           </button>
           <div className="dropdown__menu" aria-labelledby="drop-01">
-            <form className="filter">
+            <form className="filter" onSubmit={handleSubmit}>
               <div className="baron filter__scroll">
                 <div className="baron__rel">
                   <div className="baron__track">
@@ -28,79 +76,13 @@ const Filter: FC<PropsWithChildren> = () => {
                     <strong className="filter__title">Цена</strong>
                     <div className="filter__fieldset">
                       <div className="filter__field-row">
-                        <input type="number" value="0" id="input-range-0" required />
-                        <input type="number" value="100000" id="input-range-1" required />
+                        <input type="number" defaultValue={0} id="input-range-0" required />
+                        <input type="number" defaultValue={100000} id="input-range-1" required />
                       </div>
                       <div className="range" id="slider-range">
                         <div className="range__line" style={{ width: '120px' }}>
                           <button className="range__tumbler" type="button"></button>
                           <button className="range__tumbler" style={{ width: '120px' }} type="button"></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="filter__group">
-                    <strong className="filter__title">Состав</strong>
-                    <div className="filter__fieldset">
-                      <div className="field-checkbox">
-                        <div className="field-checkbox__input-wrap">
-                          <label className="field-checkbox__name">
-                            <input className="field-checkbox__input" type="checkbox" name="check0" />
-                            <span className="field-checkbox__name-text">Шерсть</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div className="field-checkbox">
-                        <div className="field-checkbox__input-wrap">
-                          <label className="field-checkbox__name">
-                            <input className="field-checkbox__input" type="checkbox" name="check0" />
-                            <span className="field-checkbox__name-text">Вискоза</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div className="field-checkbox">
-                        <div className="field-checkbox__input-wrap">
-                          <label className="field-checkbox__name">
-                            <input className="field-checkbox__input" type="checkbox" name="check0" />
-                            <span className="field-checkbox__name-text">Лен</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="filter__group">
-                    <strong className="filter__title">Цвет</strong>
-                    <div className="filter__fieldset">
-                      <div className="field-checkbox">
-                        <div className="field-checkbox__input-wrap  field-checkbox__input-wrap--white">
-                          <label className="field-checkbox__name">
-                            <input className="field-checkbox__input" type="checkbox" name="check0" />
-                            <span className="field-checkbox__name-text">Белый</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div className="field-checkbox">
-                        <div className="field-checkbox__input-wrap  field-checkbox__input-wrap--yellow">
-                          <label className="field-checkbox__name">
-                            <input className="field-checkbox__input" type="checkbox" name="check0" />
-                            <span className="field-checkbox__name-text">Желтый</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div className="field-checkbox">
-                        <div className="field-checkbox__input-wrap  field-checkbox__input-wrap--green">
-                          <label className="field-checkbox__name">
-                            <input className="field-checkbox__input" type="checkbox" name="check0" />
-                            <span className="field-checkbox__name-text">Зеленый</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div className="field-checkbox">
-                        <div className="field-checkbox__input-wrap  field-checkbox__input-wrap--gradient">
-                          <label className="field-checkbox__name">
-                            <input className="field-checkbox__input" type="checkbox" name="check0" />
-                            <span className="field-checkbox__name-text">Цветной</span>
-                          </label>
                         </div>
                       </div>
                     </div>
@@ -128,24 +110,19 @@ const Filter: FC<PropsWithChildren> = () => {
             По популярности
           </button>
           <div className="dropdown__menu" aria-labelledby="drop-02">
-            <ul className="sort">
+            <ul className="sort" ref={refSort}>
               <li className="sort__item">
-                <a className="sort__link sort__link--active" href="">
+                <a className={`sort__link`} onClick={handleSortRating}>
                   По популярности
                 </a>
               </li>
               <li className="sort__item">
-                <a className="sort__link" href="">
-                  По новизне
-                </a>
-              </li>
-              <li className="sort__item">
-                <a className="sort__link" href="">
+                <a className={`sort__link`} onClick={handleSortDown}>
                   По убыванию цены
                 </a>
               </li>
               <li className="sort__item">
-                <a className="sort__link" href="">
+                <a className={`sort__link`} onClick={handleSortUP}>
                   По возрастанию цены
                 </a>
               </li>
