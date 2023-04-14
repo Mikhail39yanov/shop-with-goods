@@ -4,6 +4,7 @@ import { useStore } from 'effector-react'
 import { $basket, resetBasket } from '../../../processes/model/basket'
 import { sum } from '../utils/sum'
 import { Link } from 'react-router-dom'
+import { basketCounter } from '../utils/basketCounter'
 
 const UserBasket: FC<PropsWithChildren> = () => {
   const basket = useStore($basket)
@@ -16,7 +17,7 @@ const UserBasket: FC<PropsWithChildren> = () => {
         </a>
         <div className="compare__content">
           <strong>Корзина</strong>
-          <span className="compare__quan">{basket.length || 0}</span>
+          <span className="compare__quan">{basketCounter(basket) || 0}</span>
         </div>
       </div>
       <div className="drop drop--basket">
