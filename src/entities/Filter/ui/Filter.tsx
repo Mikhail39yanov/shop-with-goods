@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren } from 'react'
 import classnames from 'classnames'
 import { TFilterProps } from '../types/TFilterProps'
+import { resetFilter } from '../../../processes/model/filter'
 
 const Filter: FC<PropsWithChildren<TFilterProps>> = ({
   handleSubmit,
@@ -68,7 +69,12 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
           </div>
           <div className="filter__group filter__group--no-line">
             <button className="btn btn--main btn--s-middle filter__btn">Показать</button>
-            <button className="btn btn--s-middle btn--white-b filter__btn" type="reset">
+            <button
+              className="btn btn--s-middle btn--white-b filter__btn"
+              onClick={() => {
+                resetFilter()
+              }}
+            >
               Сбросить
             </button>
           </div>

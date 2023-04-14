@@ -3,6 +3,7 @@ import { TFilterRangeProduct } from './types'
 
 export const sortProducts = createEvent<string>()
 export const filterProducts = createEvent()
+export const resetFilter = createEvent()
 export const updateMin = createEvent<{ value: number; key: string }>()
 export const updateMax = createEvent<{ value: number; key: string }>()
 

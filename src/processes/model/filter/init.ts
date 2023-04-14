@@ -1,10 +1,11 @@
 import { sample } from 'effector'
 import { $productList } from '../product'
-import { $filterList, filterProducts, sortProducts, updateMax, updateMin } from '.'
+import { $filterList, filterProducts, resetFilter, sortProducts, updateMax, updateMin } from '.'
 import { TProducts } from '../product/types'
 import { TFilterRangeProduct } from './types'
 
 $filterList
+  .reset(resetFilter)
   .on(updateMin, (form, { key, value }) => ({
     ...form,
     [key]: value,
