@@ -11,7 +11,7 @@ export const fetchProductList = createEffect<string[], TProducts>()
 export const loadProductList = createEffect<string[], TProducts>()
 
 export const $productList = createStore<TProducts>([])
-export const $currentCatalog = createStore({})
+export const $currentCatalog = createStore('smartphones')
 
 // $productList.watch((item) => {
 //   console.log(item)

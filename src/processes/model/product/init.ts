@@ -31,7 +31,7 @@ $currentCatalog.on(updateCategory, (_, cat) => {
 
 sample({
   source: $currentCatalog,
-  clock: load,
+  clock: [load, fetchCatalogList.doneData],
   fn: (categories) => {
     if (typeof categories === 'object') {
       return ['smartphones']
