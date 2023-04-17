@@ -4,6 +4,7 @@ export type TProduct = {
   price?: number
   rating?: number
   thumbnail?: string
+  description?: string
 }
 
 export type TProducts = TProduct[]

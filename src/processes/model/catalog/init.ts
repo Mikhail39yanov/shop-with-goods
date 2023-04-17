@@ -1,4 +1,5 @@
-import { $catalogList, fetchCatalogList } from '.'
+import { forward } from 'effector'
+import { $catalogList, $currentCatalog, fetchCatalogList, updateCategory } from '.'
 
 fetchCatalogList.use(async () => {
   const url = `https://dummyjson.com/products/categories`
@@ -9,9 +10,14 @@ fetchCatalogList.use(async () => {
 
 $catalogList.on(fetchCatalogList.doneData, (_, catalog) => catalog)
 
-fetchCatalogList()
+$currentCatalog.on(fetchCatalogList.doneData, (_, catalog) => {
+  // console.log()
+  return catalog[0]
+})
 
-// forward({
-//   from: fetchCatalogList.doneData,
-//   to: fetchProductList.doneData,
-// })catalogList
+forward({
+  from: updateCategory,
+  to: $currentCatalog,
+})
+
+fetchCatalogList()

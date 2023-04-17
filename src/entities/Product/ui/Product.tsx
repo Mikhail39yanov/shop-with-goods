@@ -9,6 +9,7 @@ import { TProductProps } from '../types/TProductProps'
 const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({
   title,
   thumbnail,
+  description,
   price,
   rating,
   handleSubmit,
@@ -32,6 +33,7 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({
           <div className="product__content">
             <a className="product__wrap-link">
               <h3 className="product__title">{title || 'title'}</h3>
+              <p>{description || 'description'}</p>
               <strong className="product__price">
                 {price} ₽/<sub>упак.</sub>
               </strong>

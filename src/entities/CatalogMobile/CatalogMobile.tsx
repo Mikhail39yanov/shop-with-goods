@@ -1,7 +1,6 @@
 import { useStore } from 'effector-react'
 import { FC, PropsWithChildren } from 'react'
-import { $catalogList } from '../../processes/model/catalog'
-import { updateCategory } from '../../processes/model/product'
+import { $catalogList, updateCategory } from '../../processes/model/catalog'
 import { Link } from 'react-router-dom'
 
 const CatalogMobile: FC<PropsWithChildren> = () => {

@@ -3,7 +3,7 @@ import Product from '../ui/Product'
 import { TProduct } from '../../../processes/model/product/types'
 import { updateBasket } from '../../../processes/model/basket'
 
-const ProductModel: FC<PropsWithChildren<TProduct>> = ({ id, title, thumbnail, price, rating }) => {
+const ProductModel: FC<PropsWithChildren<TProduct>> = ({ id, title, description, thumbnail, price, rating }) => {
   const [value, setValue] = useState('0')
 
   const handleSubmit = (event: FormEvent) => {
@@ -35,6 +35,7 @@ const ProductModel: FC<PropsWithChildren<TProduct>> = ({ id, title, thumbnail, p
       key={id}
       id={id}
       title={title}
+      description={description}
       thumbnail={thumbnail}
       price={price}
       rating={rating}

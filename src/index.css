@@ -1554,6 +1554,13 @@ input:checked ~ .field-checkbox__name-text:after {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.content__col:nth-child(n + 3) {
+  display: none;
+}
+.content__col.is-visible {
+  display: block;
+}
 .content__col--auto {
   flex-basis: auto;
 }
