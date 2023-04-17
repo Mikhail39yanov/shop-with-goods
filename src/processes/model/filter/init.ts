@@ -16,10 +16,10 @@ $filterListSettings
   }))
 
 sample({
-  source: $productListFilter,
+  source: $productList,
   clock: [sortProducts],
   fn: (array, column) => {
-    console.log(array)
+    // console.log(array)
 
     let copyArr = [...array]
 

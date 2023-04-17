@@ -1,5 +1,14 @@
 import { forward, sample } from 'effector'
-import { $productList, $productListFilter, fetchProductList } from '.'
+import {
+  $items,
+  $productList,
+  $productListFilter,
+  $visibleItems,
+  fetchProductList,
+  resetVisibleItems,
+  updateItems,
+  updateVisibleItems,
+} from '.'
 import { $currentCatalog, fetchCatalogList, updateCategory } from '../catalog'
 import { filterProducts, resetFilter } from '../filter'
 
@@ -17,8 +26,15 @@ fetchProductList.use(async (payload) => {
 })
 
 $productList.on(fetchProductList.doneData, (_, product) => {
-  // console.log(product)
   return product
+})
+
+$visibleItems.reset(resetVisibleItems).on(updateVisibleItems, (state, { item }) => {
+  return item
+})
+
+$items.reset(resetVisibleItems).on(updateItems, (state, { item }) => {
+  return state + item
 })
 
 sample({
