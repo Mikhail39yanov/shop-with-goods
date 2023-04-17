@@ -1,17 +1,13 @@
 import { $basket, updateBasket, resetBasket } from '.'
 
 $basket.reset(resetBasket).on(updateBasket, (basket, product) => {
-  if (product.count === '0') {
-    return
-  }
-
   for (let index = 0; index < basket.length; index++) {
     const element = basket[index]
 
     if (element?.id === product.id) {
-      let n = Number(element.count) + Number(product.count)
+      let n = Number(product.count)
       element.count = String(n)
-      return [...basket]
+      return [...basket].filter((item) => item.count !== '0')
     }
   }
 
