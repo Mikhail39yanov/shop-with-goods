@@ -460,11 +460,21 @@ a.btn--disabled {
 .logo {
   display: inline-flex;
   align-items: flex-end;
+  align-items: center;
   text-decoration: none;
-  max-width: 49px;
-  font-size: 12px;
+  /* max-width: 49px; */
+  font-size: 24px;
+  font-weight: 800;
   line-height: 16px;
   color: #3a426d;
+  text-transform: uppercase;
+  color: #d3b36f;
+}
+
+.logo-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
 }
 .logo img {
   display: block;
@@ -1555,7 +1565,7 @@ input:checked ~ .field-checkbox__name-text:after {
   padding-right: 15px;
 }
 
-.content__col:nth-child(n + 3) {
+.content__col-product-card:nth-child(n + 3) {
   display: none;
 }
 .content__col.is-visible {
@@ -1978,9 +1988,9 @@ input:checked ~ .field-checkbox__name-text:after {
   position: relative;
   display: inline-block;
 }
-.phone:hover .phone__wrap--arrow::after {
+/* .phone:hover .phone__wrap--arrow::after {
   transform: rotate(-135deg);
-}
+} */
 .phone:hover .phone__list {
   visibility: visible;
   opacity: 1;
@@ -3126,6 +3136,7 @@ input:checked ~ .field-checkbox__name-text:after {
   }
   .page-footer__commun-row {
     display: flex;
+    align-items: center;
   }
   .page-footer__info {
     display: inline-block;
@@ -3370,7 +3381,7 @@ input:checked ~ .field-checkbox__name-text:after {
   .phone__wrap {
     border-bottom: 1px solid #dfe2ed;
   }
-  .phone__wrap--arrow::after {
+  /* .phone__wrap--arrow::after {
     content: '';
     position: absolute;
     top: 4px;
@@ -3381,7 +3392,8 @@ input:checked ~ .field-checkbox__name-text:after {
     transform: rotate(45deg);
     border-bottom: 1px solid #3e5268;
     border-right: 1px solid #3e5268;
-  }
+  } */
+
   .phone__wrap--white::after {
     border-color: white;
   }
@@ -3703,4 +3715,10 @@ input:checked ~ .field-checkbox__name-text:after {
 
 .thumb--zindex-5 {
   z-index: 5;
+}
+
+@media (max-width: 620px) {
+  .page-header__phone {
+    display: none;
+  }
 }

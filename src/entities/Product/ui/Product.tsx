@@ -21,7 +21,10 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({
   const { userName } = useStore($user)
 
   return (
-    <div className="content__col content__col--6 content__col--md-4 content__col--xl-6" data-filter="advice">
+    <div
+      className="content__col content__col--6 content__col--md-4 content__col--xl-6 content__col-product-card"
+      data-filter="advice"
+    >
       <article className="product">
         <span className="num-prod d-none">
           <b>0</b>
@@ -33,7 +36,9 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({
           <div className="product__content">
             <a className="product__wrap-link">
               <h3 className="product__title">{title || 'title'}</h3>
-              <p>{description || 'description'}</p>
+              <div className="product__desc">
+                <p>{description || 'description'}</p>
+              </div>
               <strong className="product__price">
                 {price} ₽/<sub>упак.</sub>
               </strong>

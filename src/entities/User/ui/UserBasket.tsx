@@ -36,7 +36,7 @@ const UserBasket: FC<PropsWithChildren> = () => {
                 <div className="baron__scroller">
                   {basket.length === 0 && <div className="drop-basket__item">Пусто</div>}
                   {basket.map((item) => (
-                    <a key={item.id} className="drop-basket__item" href="catalog-single.html">
+                    <a key={item.id} className="drop-basket__item">
                       <div className="drop-basket__img">
                         <img src={item.thumbnail || 'img/content/product-1.png'} alt="Show punto batİk design" />
                       </div>

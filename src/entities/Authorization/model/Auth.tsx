@@ -1,10 +1,11 @@
 import { useStore } from 'effector-react'
-import { ChangeEvent, FC, FormEvent, PropsWithChildren, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { $regInForm, auth, updateRegForm } from '../../../processes/model/auth'
 import { useNavigate } from 'react-router-dom'
 import AuthModal from '../ui/AuthModal'
 
 const Auth: FC<PropsWithChildren> = () => {
+  const refContent = useRef<HTMLDivElement>(null)
   const [valueLoginError, setLoginError] = useState('')
   const [valuePassError, setPassError] = useState('')
 
@@ -14,6 +15,7 @@ const Auth: FC<PropsWithChildren> = () => {
 
   const navigate = useNavigate()
   const goMain = () => navigate('/shop-with-goods')
+  const goBack = () => navigate(-1)
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -58,15 +60,33 @@ const Auth: FC<PropsWithChildren> = () => {
     return ''
   }
 
+  const closeModal = (event: MouseEvent) => {
+    if (event.target instanceof Node && !refContent.current?.contains(event.target)) {
+      goBack()
+    }
+  }
+
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => {
+      if (event.keyCode === 27) {
+        goBack()
+      }
+    }
+    window.addEventListener('keydown', close)
+    return () => window.removeEventListener('keydown', close)
+  }, [])
+
   return (
     <AuthModal
       handleSubmit={handleSubmit}
       handleChangeLogin={handleChangeLogin}
       handleChangePassword={handleChangePassword}
+      handleClickClose={closeModal}
       login={login}
       password={password}
       valueLoginError={valueLoginError}
       valuePassError={valuePassError}
+      refContent={refContent}
     />
   )
 }

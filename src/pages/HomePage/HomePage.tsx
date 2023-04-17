@@ -22,7 +22,7 @@ const HomePage: FC<PropsWithChildren> = () => {
       visItems.forEach((el) => el.classList.add('is-visible'))
     }
   }, [items, refProductList])
-  console.log(productList)
+
   return (
     <main>
       <div className="content">
