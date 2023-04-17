@@ -16,7 +16,7 @@ $filterListSettings
   }))
 
 sample({
-  source: $productList,
+  source: $productListFilter,
   clock: [sortProducts],
   fn: (array, column) => {
     // console.log(array)
