@@ -23,12 +23,13 @@ const HomePage: FC<PropsWithChildren> = () => {
   useEffect(() => {
     if (refProductList.current) {
       const array = Array.from(refProductList.current?.children)
+      array.forEach((el, i) => {
+        return el.classList.remove('is-visible')
+      })
       const visItemsCurrent = array.slice(0, items)
-
       visItemsCurrent.forEach((el, i) => {
         return el.classList.add('is-visible')
       })
-
       updateVisibleItems({ item: visItemsCurrent.length })
     }
   }, [items, visibleItems, refProductList, productListFilter, currentCatalog])
