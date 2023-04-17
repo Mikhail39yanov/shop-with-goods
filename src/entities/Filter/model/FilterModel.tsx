@@ -1,12 +1,18 @@
 import React, { ChangeEvent, FC, FormEvent, PropsWithChildren, useRef } from 'react'
-import { $filterList, filterProducts, sortProducts, updateMax, updateMin } from '../../../processes/model/filter'
+import {
+  $filterListSettings,
+  filterProducts,
+  sortProducts,
+  updateMax,
+  updateMin,
+} from '../../../processes/model/filter'
 import { useStore } from 'effector-react'
 import Sort from '../ui/Sort'
 import Filter from '../ui/Filter'
 
 const FilterModel: FC<PropsWithChildren> = () => {
   // Фильтрация
-  const { min, max } = useStore($filterList)
+  const { min, max } = useStore($filterListSettings)
   const minValRef = useRef<HTMLInputElement>(null)
   const maxValRef = useRef<HTMLInputElement>(null)
 

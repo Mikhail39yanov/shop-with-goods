@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 import FilterModel from '../../entities/Filter/model/FilterModel'
-import { $productList } from '../../processes/model/product'
+import { $productList, $productListFilter } from '../../processes/model/product'
 import { useStore } from 'effector-react'
 import { $currentCatalog } from '../../processes/model/catalog'
 import ProductModel from '../../entities/Product/model/ProductModel'
@@ -11,17 +11,18 @@ const HomePage: FC<PropsWithChildren> = () => {
   const [visItems, setVisItems] = useState(0)
   const refProductList = useRef<HTMLDivElement>(null)
 
-  const productList = useStore($productList)
+  // const productList = useStore($productList)
+  const productListFilter = useStore($productListFilter)
   const currentCatalog = useStore($currentCatalog)
 
   useEffect(() => {
     if (refProductList.current) {
       const array = refProductList.current?.children
-      const visItems = [...array].slice(0, items)
-      setVisItems(visItems.length)
-      visItems.forEach((el) => el.classList.add('is-visible'))
+      const visItemsCurrent = [...array].slice(0, items)
+      setVisItems(visItemsCurrent.length)
+      visItemsCurrent.forEach((el) => el.classList.add('is-visible'))
     }
-  }, [items, refProductList])
+  }, [items, visItems, refProductList, productListFilter, currentCatalog])
 
   return (
     <main>
@@ -32,9 +33,9 @@ const HomePage: FC<PropsWithChildren> = () => {
           </header>
           <FilterModel />
           <div className="content__row content__row--xs-6 content__row--col-mb count-hide" ref={refProductList}>
-            {productList.length === 0 && <h2>Список пуст</h2>}
+            {productListFilter.length === 0 && <h2>Список пуст</h2>}
 
-            {productList.map((item, i) => (
+            {productListFilter.map((item, i) => (
               <ProductModel
                 key={item.id}
                 id={item.id}
@@ -46,7 +47,7 @@ const HomePage: FC<PropsWithChildren> = () => {
               />
             ))}
           </div>
-          {productList.length !== visItems && (
+          {productListFilter.length !== visItems && productListFilter.length >= 5 && (
             <button
               className="btn btn--lighten btn--s-big content__btn-more js-show-more"
               onClick={() => {

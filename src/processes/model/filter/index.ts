@@ -7,7 +7,7 @@ export const resetFilter = createEvent()
 export const updateMin = createEvent<{ value: number; key: string }>()
 export const updateMax = createEvent<{ value: number; key: string }>()
 
-export const $filterList = createStore<TFilterRangeProduct>({
+export const $filterListSettings = createStore<TFilterRangeProduct>({
   min: 0,
   max: 10000,
 })

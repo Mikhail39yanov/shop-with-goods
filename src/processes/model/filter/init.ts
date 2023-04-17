@@ -1,10 +1,10 @@
 import { sample } from 'effector'
-import { $productList } from '../product'
-import { $filterList, filterProducts, resetFilter, sortProducts, updateMax, updateMin } from '.'
+import { $productList, $productListFilter } from '../product'
+import { $filterListSettings, filterProducts, resetFilter, sortProducts, updateMax, updateMin } from '.'
 import { TProducts } from '../product/types'
 import { TFilterRangeProduct } from './types'
 
-$filterList
+$filterListSettings
   .reset(resetFilter)
   .on(updateMin, (form, { key, value }) => ({
     ...form,
@@ -16,9 +16,10 @@ $filterList
   }))
 
 sample({
-  source: $productList,
-  clock: sortProducts,
+  source: $productListFilter,
+  clock: [sortProducts],
   fn: (array, column) => {
+    console.log(array)
     function sortItems(arrayProduct: TProducts, column = 'default', dir = false) {
       if (column === 'rating') {
         return arrayProduct.sort((a, b) => {
@@ -69,11 +70,11 @@ sample({
 
     return copyArr
   },
-  target: $productList,
+  target: $productListFilter,
 })
 
 sample({
-  source: [$productList, $filterList],
+  source: [$productList, $filterListSettings],
   clock: [filterProducts],
   fn: (arrProduct, itemList) => {
     const filteredArray = arrProduct[0] as TProducts
@@ -83,7 +84,6 @@ sample({
     const result = filteredArray.filter((item) => {
       if (item.price) {
         if (item.price >= filteredRange.min && item.price <= filteredRange.max) {
-          // console.log(item)
           return item
         }
       }
@@ -92,5 +92,5 @@ sample({
 
     return result
   },
-  target: $productList,
+  target: $productListFilter,
 })

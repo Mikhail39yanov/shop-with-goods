@@ -1,6 +1,7 @@
-import { sample } from 'effector'
-import { $productList, fetchProductList } from '.'
+import { forward, sample } from 'effector'
+import { $productList, $productListFilter, fetchProductList } from '.'
 import { $currentCatalog, fetchCatalogList, updateCategory } from '../catalog'
+import { filterProducts, resetFilter } from '../filter'
 
 fetchProductList.use(async (payload) => {
   if (payload.length === 0) {
@@ -22,9 +23,14 @@ $productList.on(fetchProductList.doneData, (_, product) => {
 
 sample({
   source: $currentCatalog,
-  clock: [fetchCatalogList.doneData, updateCategory],
+  clock: [fetchCatalogList.doneData, updateCategory, resetFilter],
   fn: (category) => {
     return [category]
   },
   target: fetchProductList,
+})
+
+forward({
+  from: $productList,
+  to: $productListFilter,
 })
