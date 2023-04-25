@@ -11,8 +11,8 @@ export const $productListFilter = createStore<TProducts>([])
 export const $visibleItems = createStore(0)
 export const $items = createStore(2)
 
-// $productList.watch((item) => {
-//   console.log(item)
+// $productList.watch((state) => {
+//   console.log(state)
 // })
 
 // $visibleItems.watch((item) => {

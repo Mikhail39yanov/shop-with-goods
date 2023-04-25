@@ -8,7 +8,7 @@ import SuccessfulPurchase from '../widgets/SuccessfulPurchase'
 import NotFound from '../pages/NotFound'
 import About from '../pages/About'
 import News from '../pages/News'
-
+// https://mocki.io/v1/63bb0310-276a-499c-a162-9d42410d4df2
 const App: FC<PropsWithChildren> = () => {
   return (
     <Layout>

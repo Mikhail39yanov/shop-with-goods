@@ -66,6 +66,50 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                   </div>
                 </div>
               </div>
+              {/* Категории */}
+              <div className="filter__group">
+                <strong className="filter__title">Категории</strong>
+                <div className="filter__fieldset">
+                  <div className="field-checkbox">
+                    <div className="field-checkbox__input-wrap">
+                      <label className="field-checkbox__name">
+                        <input className="field-checkbox__input" type="checkbox" name="check0" />
+                        <span className="field-checkbox__name-text">Apple</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="field-checkbox">
+                    <div className="field-checkbox__input-wrap">
+                      <label className="field-checkbox__name">
+                        <input className="field-checkbox__input" type="checkbox" name="check0" />
+                        <span className="field-checkbox__name-text">Samsung</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Брэнд */}
+              <div className="filter__group">
+                <strong className="filter__title">Брэнд</strong>
+                <div className="filter__fieldset">
+                  <div className="field-checkbox">
+                    <div className="field-checkbox__input-wrap">
+                      <label className="field-checkbox__name">
+                        <input className="field-checkbox__input" type="checkbox" name="check0" />
+                        <span className="field-checkbox__name-text">Apple</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="field-checkbox">
+                    <div className="field-checkbox__input-wrap">
+                      <label className="field-checkbox__name">
+                        <input className="field-checkbox__input" type="checkbox" name="check0" />
+                        <span className="field-checkbox__name-text">Samsung</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               {/* Материал */}
               <div className="filter__group">
                 <strong className="filter__title">Материал</strong>
@@ -74,7 +118,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                     <div className="field-checkbox__input-wrap">
                       <label className="field-checkbox__name">
                         <input className="field-checkbox__input" type="checkbox" name="check0" />
-                        <span className="field-checkbox__name-text">Металл</span>
+                        <span className="field-checkbox__name-text">???</span>
                       </label>
                     </div>
                   </div>
@@ -82,7 +126,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                     <div className="field-checkbox__input-wrap">
                       <label className="field-checkbox__name">
                         <input className="field-checkbox__input" type="checkbox" name="check0" />
-                        <span className="field-checkbox__name-text">Пластмасса</span>
+                        <span className="field-checkbox__name-text">???</span>
                       </label>
                     </div>
                   </div>
@@ -101,7 +145,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                     </div>
                   </div>
                   <div className="field-checkbox">
-                    <div className="field-checkbox__input-wrap  field-checkbox__input-wrap--yellow">
+                    <div className="field-checkbox__input-wrap field-checkbox__input-wrap--black">
                       <label className="field-checkbox__name">
                         <input className="field-checkbox__input" type="checkbox" name="check0" />
                         <span className="field-checkbox__name-text">Черный</span>
@@ -109,7 +153,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                     </div>
                   </div>
                   <div className="field-checkbox">
-                    <div className="field-checkbox__input-wrap  field-checkbox__input-wrap--green">
+                    <div className="field-checkbox__input-wrap  field-checkbox__input-wrap--gradient">
                       <label className="field-checkbox__name">
                         <input className="field-checkbox__input" type="checkbox" name="check0" />
                         <span className="field-checkbox__name-text">Цветной</span>

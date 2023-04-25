@@ -977,8 +977,8 @@ input:checked ~ .field-checkbox__name-text:after {
 .field-checkbox__input-wrap--green .field-checkbox__name-text:before {
   background-color: #008a27;
 }
-.field-checkbox__input-wrap--yellow .field-checkbox__name-text:before {
-  background-color: #ffd600;
+.field-checkbox__input-wrap--black .field-checkbox__name-text:before {
+  background-color: rgba(0, 0, 0, 0.15);
 }
 .field-checkbox__input-wrap--gradient .field-checkbox__name-text:before {
   background-image: linear-gradient(180deg, #1082ec 0%, #d122ab 100%);
@@ -2259,6 +2259,7 @@ input:checked ~ .field-checkbox__name-text:after {
 }
 .filter__scroll {
   max-height: 380px;
+  overflow-y: auto;
 }
 .filter-block__row {
   display: flex;

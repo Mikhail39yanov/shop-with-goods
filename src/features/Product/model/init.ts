@@ -18,7 +18,8 @@ fetchProductList.use(async (payload) => {
   }
 
   // console.log(payload)
-
+  // product
+  // https://mocki.io/v1/64e78891-6e50-4219-ba85-f8311cb691b4
   const url = `https://dummyjson.com/products/category/${payload[0]}`
   const { products } = await fetch(url).then((response) => response.json())
 
