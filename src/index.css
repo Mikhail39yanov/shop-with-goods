@@ -3103,6 +3103,10 @@ input:checked ~ .field-checkbox__name-text:after {
     padding-top: 65px;
     padding-bottom: 88px;
   }
+  .page-footer__address {
+    text-align: left;
+    width: 100%;
+  }
   .page-footer__row--xl-reverse {
     flex-direction: row-reverse;
   }
