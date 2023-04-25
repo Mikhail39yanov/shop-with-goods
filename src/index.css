@@ -1123,16 +1123,21 @@ input:checked ~ .field-checkbox__name-text:after {
   width: 100%;
 }
 .modal__dialog {
-  position: relative;
-  top: 0;
-  right: -25%;
-  margin: 0;
+  position: absolute;
+  top: 25%;
+  right: 0;
+  left: 50%;
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  transform: translate(50%, 0);
+  max-width: 420px;
+  height: 400px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  transform: translate(-50%, -25%);
   border: 1px solid black;
   border-radius: 5px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-y: auto;
 }
 .modal__content {
   position: relative;
@@ -2995,7 +3000,7 @@ input:checked ~ .field-checkbox__name-text:after {
   }
   .modal__dialog {
     width: 600px;
-    height: auto;
+    /* height: auto; */
   }
   .modal--open .modal__dialog {
     animation: modal-content-show 0.3s 1 both;
@@ -3603,12 +3608,12 @@ input:checked ~ .field-checkbox__name-text:after {
   }
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   .modal__dialog {
     right: 0;
     transform: translate(0, 0);
   }
-}
+} */
 .field-text__input[aria-invalid] {
   border-color: red;
 }
