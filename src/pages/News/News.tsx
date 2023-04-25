@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import { FC, Key, PropsWithChildren } from 'react'
-import { $newsList } from '../../processes/model/news'
+import { $newsList } from '../../app/model/news'
 
 const News: FC<PropsWithChildren> = () => {
   const newslist = useStore($newsList)

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react'
-import Login from '../../entities/User/model/Login'
+import Login from '../../features/User/model/Login'
 import Catalog from '../../entities/Catalog'
 import { Link } from 'react-router-dom'
 

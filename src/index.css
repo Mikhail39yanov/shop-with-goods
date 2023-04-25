@@ -2258,7 +2258,7 @@ input:checked ~ .field-checkbox__name-text:after {
   margin-right: 0;
 }
 .filter__scroll {
-  max-height: 360px;
+  max-height: 380px;
 }
 .filter-block__row {
   display: flex;

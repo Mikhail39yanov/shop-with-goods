@@ -1,16 +1,16 @@
 import { FC, PropsWithChildren, useEffect, useRef, useState } from 'react'
 
-import FilterModel from '../../entities/Filter/model/FilterModel'
+import FilterModel from '../../features/Filter/model/FilterModel'
 import {
   $items,
   $productListFilter,
   $visibleItems,
   updateItems,
   updateVisibleItems,
-} from '../../processes/model/product'
+} from '../../features/Product/model'
 import { useStore } from 'effector-react'
-import { $currentCatalog } from '../../processes/model/catalog'
-import ProductModel from '../../entities/Product/model/ProductModel'
+import { $currentCatalog } from '../../entities/Catalog/model'
+import ProductModel from '../../features/Product/model/ProductModel'
 
 const HomePage: FC<PropsWithChildren> = () => {
   const refProductList = useRef<HTMLDivElement>(null)

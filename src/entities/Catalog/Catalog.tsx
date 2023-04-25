@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import { FC, PropsWithChildren } from 'react'
-import { $catalogList, updateCategory } from '../../processes/model/catalog'
-import { resetVisibleItems } from '../../processes/model/product'
+import { $catalogList, updateCategory } from './model'
+import { resetVisibleItems } from '../../features/Product/model'
 
 const Catalog: FC<PropsWithChildren> = () => {
   const catalogList = useStore($catalogList)

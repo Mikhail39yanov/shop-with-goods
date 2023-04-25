@@ -6,7 +6,7 @@ import App from './app/App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
 
-import './processes/model/init'
+import './app/model/init'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
