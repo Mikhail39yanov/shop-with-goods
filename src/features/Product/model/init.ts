@@ -10,7 +10,7 @@ import {
   updateVisibleItems,
 } from '.'
 import { $currentCatalog, fetchCatalogList, updateCategory } from '../../../entities/Catalog/model'
-import { filterProducts, resetFilter } from '../../Filter/model'
+import { resetFilter } from '../../Filter/model'
 
 fetchProductList.use(async (payload) => {
   if (payload.length === 0) {
@@ -20,10 +20,16 @@ fetchProductList.use(async (payload) => {
   // console.log(payload)
   // product
   // https://mocki.io/v1/64e78891-6e50-4219-ba85-f8311cb691b4
-  const url = `https://dummyjson.com/products/category/${payload[0]}`
-  const { products } = await fetch(url).then((response) => response.json())
-
-  return products
+  // const url = `https://dummyjson.com/products/category/${payload[0]}`
+  const url = `https://mocki.io/v1/64e78891-6e50-4219-ba85-f8311cb691b4`
+  const { gadgets, perfumery, clothes } = await fetch(url).then((response) => response.json())
+  if (payload[0] === 'gadgets') {
+    return gadgets
+  } else if (payload[0] === 'perfumery') {
+    return perfumery
+  } else {
+    return clothes
+  }
 })
 
 $productList.on(fetchProductList.doneData, (_, product) => {

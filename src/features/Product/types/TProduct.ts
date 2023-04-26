@@ -5,6 +5,10 @@ export type TProduct = {
   rating?: number
   thumbnail?: string
   description?: string
+  category?: string
+  brand?: string
+  color?: string
+  material?: string
 }
 
 export type TProducts = TProduct[]

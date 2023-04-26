@@ -9,7 +9,7 @@ export const fetchProductList = createEffect<string[], TProducts>()
 export const $productList = createStore<TProducts>([])
 export const $productListFilter = createStore<TProducts>([])
 export const $visibleItems = createStore(0)
-export const $items = createStore(2)
+export const $items = createStore(4)
 
 // $productList.watch((state) => {
 //   console.log(state)

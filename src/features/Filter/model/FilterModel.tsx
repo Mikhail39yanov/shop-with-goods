@@ -1,12 +1,22 @@
 import React, { ChangeEvent, FC, FormEvent, PropsWithChildren, useRef } from 'react'
-import { $filterListSettings, filterProducts, sortProducts, updateMax, updateMin } from '.'
+import {
+  $filterListSettings,
+  filterProducts,
+  sortProducts,
+  updateSmartphones,
+  updateMax,
+  updateMin,
+  updateLaptops,
+  updateFragrances,
+  updateSkincare,
+} from '.'
 import { useStore } from 'effector-react'
 import Sort from '../ui/Sort'
 import Filter from '../ui/Filter'
 
 const FilterModel: FC<PropsWithChildren> = () => {
   // Фильтрация
-  const { min, max } = useStore($filterListSettings)
+  const { min, max, categoryGadgets, categoryPerfumery } = useStore($filterListSettings)
   const minValRef = useRef<HTMLInputElement>(null)
   const maxValRef = useRef<HTMLInputElement>(null)
 
@@ -25,6 +35,14 @@ const FilterModel: FC<PropsWithChildren> = () => {
     updateMax({ value: value, key: 'max' })
     event.target.value = value.toString()
   }
+
+  // Категории gadgets
+  const onChangeCheckSmartphones = () => updateSmartphones()
+  const onChangeCheckLaptops = () => updateLaptops()
+
+  // Категории perfumery
+  const onChangeCheckFragrances = () => updateFragrances()
+  const onChangeCheckSkincare = () => updateSkincare()
 
   /// Сортировка
   const refSort = useRef<HTMLUListElement>(null)
@@ -76,10 +94,18 @@ const FilterModel: FC<PropsWithChildren> = () => {
           handleSubmit={handleSubmit}
           onChangeLeftTrack={onChangeLeftTrack}
           onChangeRightTrack={onChangeRightTrack}
+          onChangeCheckSmartphones={onChangeCheckSmartphones}
+          onChangeCheckLaptops={onChangeCheckLaptops}
+          onChangeCheckFragrances={onChangeCheckFragrances}
+          onChangeCheckSkincare={onChangeCheckSkincare}
           min={min}
           max={max}
           minValRef={minValRef}
           maxValRef={maxValRef}
+          smartphones={categoryGadgets.smartphones}
+          laptops={categoryGadgets.laptops}
+          fragrances={categoryPerfumery.fragrances}
+          skincare={categoryPerfumery.skincare}
         />
         <Sort
           refSort={refSort}

@@ -54,14 +54,18 @@ const HomePage: FC<PropsWithChildren> = () => {
                 thumbnail={item.thumbnail}
                 price={item.price}
                 rating={item.rating}
+                brand={item.brand}
+                category={item.category}
+                color={item.color}
+                material={item.material}
               />
             ))}
           </div>
-          {productListFilter.length !== visibleItems && productListFilter.length >= 5 && (
+          {productListFilter.length !== visibleItems && productListFilter.length >= 4 && (
             <button
               className="btn btn--lighten btn--s-big content__btn-more js-show-more"
               onClick={() => {
-                updateItems({ item: 2 })
+                updateItems({ item: 4 })
               }}
             >
               Показать больше
