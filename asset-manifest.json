@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/shop-with-goods/static/css/main.e950e946.css",
-    "main.js": "/shop-with-goods/static/js/main.dd9e3397.js",
+    "main.js": "/shop-with-goods/static/js/main.430f1890.js",
     "static/js/787.a07b584e.chunk.js": "/shop-with-goods/static/js/787.a07b584e.chunk.js",
     "static/media/Roboto-Medium.woff": "/shop-with-goods/static/media/Roboto-Medium.b14ca2d2b289afceb0b0.woff",
     "static/media/Roboto-Bold.woff": "/shop-with-goods/static/media/Roboto-Bold.3f2cbde6b72e8d05669f.woff",
@@ -13,11 +13,11 @@
     "index.html": "/shop-with-goods/index.html",
     "static/media/icon-filter.svg": "/shop-with-goods/static/media/icon-filter.0c85a613d3a47dceef4f.svg",
     "main.e950e946.css.map": "/shop-with-goods/static/css/main.e950e946.css.map",
-    "main.dd9e3397.js.map": "/shop-with-goods/static/js/main.dd9e3397.js.map",
+    "main.430f1890.js.map": "/shop-with-goods/static/js/main.430f1890.js.map",
     "787.a07b584e.chunk.js.map": "/shop-with-goods/static/js/787.a07b584e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e950e946.css",
-    "static/js/main.dd9e3397.js"
+    "static/js/main.430f1890.js"
   ]
 }
