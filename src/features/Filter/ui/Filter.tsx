@@ -7,15 +7,19 @@ import {
   updateApple,
   updateAvon,
   updateChanel,
+  updateFragrances,
   updateHP,
   updateHuawei,
   updateInfinix,
+  updateLaptops,
   updateMensShoes,
   updateMicrosoft,
   updateOPPO,
   updateProfessionalWear,
   updateRubber,
   updateSamsung,
+  updateSkincare,
+  updateSmartphones,
   updateSneakers,
   updateSoftCotton,
   updateTheWarehouse,
@@ -30,21 +34,22 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
   handleSubmit,
   onChangeLeftTrack,
   onChangeRightTrack,
-  onChangeCheckSmartphones,
-  onChangeCheckLaptops,
-  onChangeCheckFragrances,
-  onChangeCheckSkincare,
   min,
   max,
   minValRef,
   maxValRef,
-  smartphones,
-  laptops,
-  fragrances,
-  skincare,
 }) => {
-  const { categoryClothes, brandGadgets, brandPerfumery, brandClothes } = useStore($filterListSettings)
+  const { categoryGadgets, categoryPerfumery, categoryClothes, brandGadgets, brandPerfumery, brandClothes } =
+    useStore($filterListSettings)
   const currentCatalog = useStore($currentCatalog)
+
+  // Категории gadgets
+  const onChangeCheckSmartphones = () => updateSmartphones()
+  const onChangeCheckLaptops = () => updateLaptops()
+
+  // Категории perfumery
+  const onChangeCheckFragrances = () => updateFragrances()
+  const onChangeCheckSkincare = () => updateSkincare()
 
   // Категории perfumery
   const onChangeCheckTops = () => updateTops()
@@ -139,8 +144,8 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               className="field-checkbox__input"
                               type="checkbox"
                               name="check0"
-                              checked={smartphones}
-                              onChange={onChangeCheckSmartphones}
+                              checked={categoryGadgets.smartphones}
+                              onChange={() => updateSmartphones()}
                             />
                             <span className="field-checkbox__name-text">smartphones</span>
                           </label>
@@ -153,8 +158,8 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               className="field-checkbox__input"
                               type="checkbox"
                               name="check0"
-                              checked={laptops}
-                              onChange={onChangeCheckLaptops}
+                              checked={categoryGadgets.laptops}
+                              onChange={() => updateLaptops()}
                             />
                             <span className="field-checkbox__name-text">laptops</span>
                           </label>
@@ -173,8 +178,8 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               className="field-checkbox__input"
                               type="checkbox"
                               name="check0"
-                              checked={fragrances}
-                              onChange={onChangeCheckFragrances}
+                              checked={categoryPerfumery.fragrances}
+                              onChange={() => updateFragrances()}
                             />
                             <span className="field-checkbox__name-text">fragrances</span>
                           </label>
@@ -187,8 +192,8 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               className="field-checkbox__input"
                               type="checkbox"
                               name="check0"
-                              checked={skincare}
-                              onChange={onChangeCheckSkincare}
+                              checked={categoryPerfumery.skincare}
+                              onChange={() => updateSkincare()}
                             />
                             <span className="field-checkbox__name-text">skincare</span>
                           </label>
@@ -208,7 +213,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={categoryClothes.tops}
-                              onChange={onChangeCheckTops}
+                              onChange={() => updateTops()}
                             />
                             <span className="field-checkbox__name-text">tops</span>
                           </label>
@@ -222,7 +227,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={categoryClothes['mens-shoes']}
-                              onChange={onChangeCheckMensShoes}
+                              onChange={() => updateMensShoes()}
                             />
                             <span className="field-checkbox__name-text">mensShoes</span>
                           </label>
@@ -248,7 +253,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandGadgets.Apple}
-                              onChange={onChangeCheckApple}
+                              onChange={() => updateApple()}
                             />
                             <span className="field-checkbox__name-text">Apple</span>
                           </label>
@@ -262,7 +267,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandGadgets.Samsung}
-                              onChange={onChangeCheckSamsung}
+                              onChange={() => updateSamsung()}
                             />
                             <span className="field-checkbox__name-text">Samsung</span>
                           </label>
@@ -276,7 +281,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandGadgets.OPPO}
-                              onChange={onChangeCheckOPPO}
+                              onChange={() => updateOPPO()}
                             />
                             <span className="field-checkbox__name-text">OPPO</span>
                           </label>
@@ -290,7 +295,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandGadgets.Huawei}
-                              onChange={onChangeCheckHuawei}
+                              onChange={() => updateHuawei()}
                             />
                             <span className="field-checkbox__name-text">Huawei</span>
                           </label>
@@ -304,7 +309,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandGadgets.Microsoft}
-                              onChange={onChangeCheckMicrosoft}
+                              onChange={() => updateMicrosoft()}
                             />
                             <span className="field-checkbox__name-text">Microsoft</span>
                           </label>
@@ -318,7 +323,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandGadgets.Infinix}
-                              onChange={onChangeCheckInfinix}
+                              onChange={() => updateInfinix()}
                             />
                             <span className="field-checkbox__name-text">Infinix</span>
                           </label>
@@ -332,7 +337,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandGadgets.HP}
-                              onChange={onChangeCheckHP}
+                              onChange={() => updateHP()}
                             />
                             <span className="field-checkbox__name-text">HP</span>
                           </label>
@@ -352,7 +357,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandPerfumery.Zara}
-                              onChange={onChangeCheckZara}
+                              onChange={() => updateZara()}
                             />
                             <span className="field-checkbox__name-text">Zara</span>
                           </label>
@@ -366,7 +371,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandPerfumery.Chanel}
-                              onChange={onChangeCheckChanel}
+                              onChange={() => updateChanel()}
                             />
                             <span className="field-checkbox__name-text">Chanel</span>
                           </label>
@@ -380,7 +385,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandPerfumery.Avon}
-                              onChange={onChangeCheckAvon}
+                              onChange={() => updateAvon()}
                             />
                             <span className="field-checkbox__name-text">Avon</span>
                           </label>
@@ -400,7 +405,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandClothes['Professional Wear']}
-                              onChange={onChangeCheckProfessionalWear}
+                              onChange={() => updateProfessionalWear()}
                             />
                             <span className="field-checkbox__name-text">Professional Wear</span>
                           </label>
@@ -414,7 +419,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandClothes['Soft Cotton']}
-                              onChange={onChangeCheckSoftCotton}
+                              onChange={() => updateSoftCotton()}
                             />
                             <span className="field-checkbox__name-text">Soft Cotton</span>
                           </label>
@@ -428,7 +433,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandClothes['Top Sweater']}
-                              onChange={onChangeCheckTopSweater}
+                              onChange={() => updateTopSweater()}
                             />
                             <span className="field-checkbox__name-text">Top Sweater</span>
                           </label>
@@ -442,7 +447,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandClothes.Sneakers}
-                              onChange={onChangeCheckSneakers}
+                              onChange={() => updateSneakers()}
                             />
                             <span className="field-checkbox__name-text">Sneakers</span>
                           </label>
@@ -456,7 +461,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandClothes.Rubber}
-                              onChange={onChangeCheckRubber}
+                              onChange={() => updateRubber()}
                             />
                             <span className="field-checkbox__name-text">Rubber</span>
                           </label>
@@ -470,7 +475,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                               type="checkbox"
                               name="check0"
                               checked={brandClothes['The Warehouse']}
-                              onChange={onChangeCheckTheWarehouse}
+                              onChange={() => updateTheWarehouse()}
                             />
                             <span className="field-checkbox__name-text">The Warehouse</span>
                           </label>

@@ -29,8 +29,10 @@ import {
   updateSneakers,
   updateRubber,
   updateTheWarehouse,
+  $filters,
+  resetFilters,
 } from '.'
-import { TFilterRangeProduct } from '../types/TFilterRangeProduct'
+import { TFilterRangeProduct, TFilters } from '../types/TFilterRangeProduct'
 import { TProducts } from '../../Product/types/TProduct'
 import { $currentCatalog } from '../../../entities/Catalog/model'
 
@@ -311,6 +313,14 @@ $filterListSettings
     }
   })
 
+$filters.on(resetFilters, (state) => {
+  return {
+    // ...state,
+    category: [],
+    brand: [],
+  }
+})
+
 sample({
   source: $productListFilter,
   clock: [sortProducts],
@@ -325,7 +335,7 @@ sample({
 })
 
 sample({
-  source: [$productList, $filterListSettings, $currentCatalog],
+  source: [$productList, $filterListSettings, $currentCatalog, $filters],
   clock: [filterProducts],
   fn: (arrProduct) => {
     const filteredArray = arrProduct[0] as TProducts
@@ -340,10 +350,13 @@ sample({
       brandClothes,
     } = arrProduct[1] as TFilterRangeProduct
     const currentCatalog = arrProduct[2]
+    let filter = arrProduct[3] as TFilters
     // console.log(arrProduct)
 
     let filteredList = [...filteredArray]
+    let filters = { ...filter }
 
+    // Фильтр цены общий
     filteredList = filteredList.filter((item) => {
       if (item.price) {
         if (item.price >= min && item.price <= max) {
@@ -352,57 +365,52 @@ sample({
       }
     })
 
-    if (currentCatalog === 'gadgets') {
-      Object.keys(categoryGadgets).map((signName) => {
-        if (categoryGadgets[signName]) {
-          filteredList = filteredList.filter((item) => {
-            return item.category === signName
-          })
-        }
-      })
+    const nestedFilter = (targetArray: TProducts, filters: TFilters) => {
+      let filterKeys = Object.keys(filters)
 
-      Object.keys(brandGadgets).map((signName) => {
-        if (brandGadgets[signName]) {
-          filteredList = filteredList.filter((item) => {
-            return item.brand === signName
-          })
-        }
-      })
-    } else if (currentCatalog === 'perfumery') {
-      Object.keys(categoryPerfumery).map((signName) => {
-        if (categoryPerfumery[signName]) {
-          filteredList = filteredList.filter((item) => {
-            return item.category === signName
-          })
-        }
-      })
-
-      Object.keys(brandPerfumery).map((signName) => {
-        if (brandPerfumery[signName]) {
-          filteredList = filteredList.filter((item) => {
-            return item.brand === signName
-          })
-        }
-      })
-    } else if (currentCatalog === 'clothes') {
-      Object.keys(categoryClothes).map((signName) => {
-        console.log(signName)
-        if (categoryClothes[signName]) {
-          filteredList = filteredList.filter((item) => {
-            return item.category === signName
-          })
-        }
-      })
-
-      Object.keys(brandClothes).map((signName) => {
-        if (brandClothes[signName]) {
-          filteredList = filteredList.filter((item) => {
-            return item.brand === signName
-          })
-        }
+      return targetArray.filter((eachObj) => {
+        return filterKeys.every((eachKey) => {
+          if (!filters[eachKey].length) {
+            return true
+          }
+          // @ts-ignore
+          return filters[eachKey].includes(eachObj[eachKey])
+        })
       })
     }
+    Object.keys({ ...categoryGadgets, ...categoryPerfumery, ...categoryClothes }).map((key) => {
+      if (categoryGadgets[key] || categoryPerfumery[key] || categoryClothes[key]) {
+        if (filters.category.filter((item) => item === key).length > 0) {
+          return
+        } else {
+          filters.category.push(key)
+        }
+      } else {
+        filters.category = filters.category.filter((obj) => obj !== key)
+      }
+    })
 
+    Object.keys({ ...brandGadgets, ...brandPerfumery, ...brandClothes }).map((key) => {
+      if (brandGadgets[key] || brandPerfumery[key] || brandClothes[key]) {
+        if (filters.brand.filter((item) => item === key).length > 0) {
+          return
+        } else {
+          filters.brand.push(key)
+        }
+      } else {
+        filters.brand = filters.brand.filter((obj) => obj !== key)
+      }
+    })
+
+    if (currentCatalog === 'gadgets') {
+      filteredList = nestedFilter(filteredList, filters)
+    } else if (currentCatalog === 'perfumery') {
+      filteredList = nestedFilter(filteredList, filters)
+    } else if (currentCatalog === 'clothes') {
+      filteredList = nestedFilter(filteredList, filters)
+    }
+
+    // console.log(filters)
     // console.log(filteredList)
 
     return filteredList

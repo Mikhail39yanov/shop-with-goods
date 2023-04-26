@@ -1,9 +1,10 @@
 import { createEvent, createStore } from 'effector'
-import { TFilterRangeProduct } from '../types/TFilterRangeProduct'
+import { TFilterRangeProduct, TFilters } from '../types/TFilterRangeProduct'
 
 export const sortProducts = createEvent<string>()
 export const filterProducts = createEvent()
 export const resetFilter = createEvent()
+export const resetFilters = createEvent()
 export const updateMin = createEvent<{ value: number; key: string }>()
 export const updateMax = createEvent<{ value: number; key: string }>()
 // Категории gadgets
@@ -63,6 +64,11 @@ export const $filterListSettings = createStore<TFilterRangeProduct>({
     Rubber: false,
     'The Warehouse': false,
   },
+})
+
+export const $filters = createStore<TFilters>({
+  category: [],
+  brand: [],
 })
 
 // $filterListSettings.watch((item) => {

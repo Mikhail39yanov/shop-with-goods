@@ -13,3 +13,9 @@ export type TFilterRangeProduct = {
   brandClothes: TFilteredMap
   // category: { smartphones: boolean; laptops: boolean }
 }
+
+export type TFilters = {
+  category: string[]
+  brand: string[]
+  [key: string]: string[]
+}

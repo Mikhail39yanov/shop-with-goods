@@ -2,6 +2,7 @@ import { useStore } from 'effector-react'
 import { FC, PropsWithChildren } from 'react'
 import { $catalogList, updateCategory } from './model'
 import { resetVisibleItems } from '../../features/Product/model'
+import { resetFilter, resetFilters } from '../../features/Filter/model'
 
 const Catalog: FC<PropsWithChildren> = () => {
   const catalogList = useStore($catalogList)
@@ -18,6 +19,8 @@ const Catalog: FC<PropsWithChildren> = () => {
                 catalog?.classList.remove('active')
                 updateCategory(item)
                 resetVisibleItems()
+                resetFilter()
+                resetFilters()
               }}
             >
               {item}
