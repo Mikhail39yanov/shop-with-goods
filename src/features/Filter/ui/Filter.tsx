@@ -1,17 +1,77 @@
 import React, { FC, PropsWithChildren } from 'react'
 import classnames from 'classnames'
 import { TFilterProps } from '../types/TFilterProps'
-import { resetFilter } from '../model'
+import {
+  $filterListSettings,
+  resetFilter,
+  updateApple,
+  updateAvon,
+  updateChanel,
+  updateHP,
+  updateHuawei,
+  updateInfinix,
+  updateMensShoes,
+  updateMicrosoft,
+  updateOPPO,
+  updateProfessionalWear,
+  updateRubber,
+  updateSamsung,
+  updateSneakers,
+  updateSoftCotton,
+  updateTheWarehouse,
+  updateTopSweater,
+  updateTops,
+  updateZara,
+} from '../model'
+import { useStore } from 'effector-react'
+import { $currentCatalog } from '../../../entities/Catalog/model'
 
 const Filter: FC<PropsWithChildren<TFilterProps>> = ({
   handleSubmit,
   onChangeLeftTrack,
   onChangeRightTrack,
+  onChangeCheckSmartphones,
+  onChangeCheckLaptops,
+  onChangeCheckFragrances,
+  onChangeCheckSkincare,
   min,
   max,
   minValRef,
   maxValRef,
+  smartphones,
+  laptops,
+  fragrances,
+  skincare,
 }) => {
+  const { categoryClothes, brandGadgets, brandPerfumery, brandClothes } = useStore($filterListSettings)
+  const currentCatalog = useStore($currentCatalog)
+
+  // Категории perfumery
+  const onChangeCheckTops = () => updateTops()
+  const onChangeCheckMensShoes = () => updateMensShoes()
+
+  // Брэнд gadgets
+  const onChangeCheckApple = () => updateApple()
+  const onChangeCheckSamsung = () => updateSamsung()
+  const onChangeCheckOPPO = () => updateOPPO()
+  const onChangeCheckHuawei = () => updateHuawei()
+  const onChangeCheckMicrosoft = () => updateMicrosoft()
+  const onChangeCheckInfinix = () => updateInfinix()
+  const onChangeCheckHP = () => updateHP()
+
+  // Брэнд perfumery
+  const onChangeCheckZara = () => updateZara()
+  const onChangeCheckChanel = () => updateChanel()
+  const onChangeCheckAvon = () => updateAvon()
+
+  // Брэнд clothes
+  const onChangeCheckProfessionalWear = () => updateProfessionalWear()
+  const onChangeCheckSoftCotton = () => updateSoftCotton()
+  const onChangeCheckTopSweater = () => updateTopSweater()
+  const onChangeCheckSneakers = () => updateSneakers()
+  const onChangeCheckRubber = () => updateRubber()
+  const onChangeCheckTheWarehouse = () => updateTheWarehouse()
+
   return (
     <div className="dropdown  dropdown--left filter filter-block__dropdown">
       <button
@@ -70,48 +130,360 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
               <div className="filter__group">
                 <strong className="filter__title">Категории</strong>
                 <div className="filter__fieldset">
-                  <div className="field-checkbox">
-                    <div className="field-checkbox__input-wrap">
-                      <label className="field-checkbox__name">
-                        <input className="field-checkbox__input" type="checkbox" name="check0" />
-                        <span className="field-checkbox__name-text">Apple</span>
-                      </label>
-                    </div>
-                  </div>
-                  <div className="field-checkbox">
-                    <div className="field-checkbox__input-wrap">
-                      <label className="field-checkbox__name">
-                        <input className="field-checkbox__input" type="checkbox" name="check0" />
-                        <span className="field-checkbox__name-text">Samsung</span>
-                      </label>
-                    </div>
-                  </div>
+                  {currentCatalog === 'gadgets' ? (
+                    <>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={smartphones}
+                              onChange={onChangeCheckSmartphones}
+                            />
+                            <span className="field-checkbox__name-text">smartphones</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={laptops}
+                              onChange={onChangeCheckLaptops}
+                            />
+                            <span className="field-checkbox__name-text">laptops</span>
+                          </label>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {currentCatalog === 'perfumery' ? (
+                    <>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={fragrances}
+                              onChange={onChangeCheckFragrances}
+                            />
+                            <span className="field-checkbox__name-text">fragrances</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={skincare}
+                              onChange={onChangeCheckSkincare}
+                            />
+                            <span className="field-checkbox__name-text">skincare</span>
+                          </label>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {currentCatalog === 'clothes' ? (
+                    <>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={categoryClothes.tops}
+                              onChange={onChangeCheckTops}
+                            />
+                            <span className="field-checkbox__name-text">tops</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={categoryClothes['mens-shoes']}
+                              onChange={onChangeCheckMensShoes}
+                            />
+                            <span className="field-checkbox__name-text">mensShoes</span>
+                          </label>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
               {/* Брэнд */}
               <div className="filter__group">
                 <strong className="filter__title">Брэнд</strong>
                 <div className="filter__fieldset">
-                  <div className="field-checkbox">
-                    <div className="field-checkbox__input-wrap">
-                      <label className="field-checkbox__name">
-                        <input className="field-checkbox__input" type="checkbox" name="check0" />
-                        <span className="field-checkbox__name-text">Apple</span>
-                      </label>
-                    </div>
-                  </div>
-                  <div className="field-checkbox">
-                    <div className="field-checkbox__input-wrap">
-                      <label className="field-checkbox__name">
-                        <input className="field-checkbox__input" type="checkbox" name="check0" />
-                        <span className="field-checkbox__name-text">Samsung</span>
-                      </label>
-                    </div>
-                  </div>
+                  {currentCatalog === 'gadgets' ? (
+                    <>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandGadgets.Apple}
+                              onChange={onChangeCheckApple}
+                            />
+                            <span className="field-checkbox__name-text">Apple</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandGadgets.Samsung}
+                              onChange={onChangeCheckSamsung}
+                            />
+                            <span className="field-checkbox__name-text">Samsung</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandGadgets.OPPO}
+                              onChange={onChangeCheckOPPO}
+                            />
+                            <span className="field-checkbox__name-text">OPPO</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandGadgets.Huawei}
+                              onChange={onChangeCheckHuawei}
+                            />
+                            <span className="field-checkbox__name-text">Huawei</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandGadgets.Microsoft}
+                              onChange={onChangeCheckMicrosoft}
+                            />
+                            <span className="field-checkbox__name-text">Microsoft</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandGadgets.Infinix}
+                              onChange={onChangeCheckInfinix}
+                            />
+                            <span className="field-checkbox__name-text">Infinix</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandGadgets.HP}
+                              onChange={onChangeCheckHP}
+                            />
+                            <span className="field-checkbox__name-text">HP</span>
+                          </label>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {currentCatalog === 'perfumery' ? (
+                    <>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandPerfumery.Zara}
+                              onChange={onChangeCheckZara}
+                            />
+                            <span className="field-checkbox__name-text">Zara</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandPerfumery.Chanel}
+                              onChange={onChangeCheckChanel}
+                            />
+                            <span className="field-checkbox__name-text">Chanel</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandPerfumery.Avon}
+                              onChange={onChangeCheckAvon}
+                            />
+                            <span className="field-checkbox__name-text">Avon</span>
+                          </label>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {currentCatalog === 'clothes' ? (
+                    <>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandClothes['Professional Wear']}
+                              onChange={onChangeCheckProfessionalWear}
+                            />
+                            <span className="field-checkbox__name-text">Professional Wear</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandClothes['Soft Cotton']}
+                              onChange={onChangeCheckSoftCotton}
+                            />
+                            <span className="field-checkbox__name-text">Soft Cotton</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandClothes['Top Sweater']}
+                              onChange={onChangeCheckTopSweater}
+                            />
+                            <span className="field-checkbox__name-text">Top Sweater</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandClothes.Sneakers}
+                              onChange={onChangeCheckSneakers}
+                            />
+                            <span className="field-checkbox__name-text">Sneakers</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandClothes.Rubber}
+                              onChange={onChangeCheckRubber}
+                            />
+                            <span className="field-checkbox__name-text">Rubber</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="field-checkbox">
+                        <div className="field-checkbox__input-wrap">
+                          <label className="field-checkbox__name">
+                            <input
+                              className="field-checkbox__input"
+                              type="checkbox"
+                              name="check0"
+                              checked={brandClothes['The Warehouse']}
+                              onChange={onChangeCheckTheWarehouse}
+                            />
+                            <span className="field-checkbox__name-text">The Warehouse</span>
+                          </label>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
               {/* Материал */}
-              <div className="filter__group">
+              {/* <div className="filter__group">
                 <strong className="filter__title">Материал</strong>
                 <div className="filter__fieldset">
                   <div className="field-checkbox">
@@ -131,9 +503,9 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* Цвет */}
-              <div className="filter__group">
+              {/* <div className="filter__group">
                 <strong className="filter__title">Цвет</strong>
                 <div className="filter__fieldset">
                   <div className="field-checkbox">
@@ -161,7 +533,7 @@ const Filter: FC<PropsWithChildren<TFilterProps>> = ({
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="filter__group filter__group--no-line">

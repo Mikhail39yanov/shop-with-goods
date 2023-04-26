@@ -3,7 +3,18 @@ import Product from '../ui/Product'
 import { updateBasket } from '../../User/model'
 import { TProduct } from '../types/TProduct'
 
-const ProductModel: FC<PropsWithChildren<TProduct>> = ({ id, title, description, thumbnail, price, rating }) => {
+const ProductModel: FC<PropsWithChildren<TProduct>> = ({
+  id,
+  title,
+  description,
+  thumbnail,
+  price,
+  rating,
+  brand,
+  category,
+  color,
+  material,
+}) => {
   const [value, setValue] = useState('0')
 
   const handleSubmit = (event: FormEvent) => {
@@ -39,6 +50,10 @@ const ProductModel: FC<PropsWithChildren<TProduct>> = ({ id, title, description,
       thumbnail={thumbnail}
       price={price}
       rating={rating}
+      brand={brand}
+      category={category}
+      color={color}
+      material={material}
       handleOnchange={handleOnchange}
       handleDecrement={handleDecrement}
       handleIncrement={handleIncrement}

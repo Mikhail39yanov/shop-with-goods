@@ -4,9 +4,9 @@ import { $catalogList, $currentCatalog, fetchCatalogList, updateCategory } from 
 fetchCatalogList.use(async () => {
   // catalogs
   // https://mocki.io/v1/9265db94-a84a-4caa-a71c-81397f461a5c
-  const url = `https://dummyjson.com/products/categories`
-  const catalogs = await fetch(url).then((response) => response.json())
-
+  // const url = `https://dummyjson.com/products/categories`
+  const url = `https://mocki.io/v1/9265db94-a84a-4caa-a71c-81397f461a5c`
+  const { catalogs } = await fetch(url).then((response) => response.json())
   return catalogs
 })
 

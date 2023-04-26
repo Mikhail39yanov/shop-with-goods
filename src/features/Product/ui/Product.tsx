@@ -12,6 +12,10 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({
   description,
   price,
   rating,
+  brand,
+  category,
+  color,
+  material,
   handleSubmit,
   handleIncrement,
   handleDecrement,
@@ -39,6 +43,20 @@ const Product: FC<PropsWithChildren<TProductProps & TProduct>> = ({
               <div className="product__desc">
                 <p>{description || 'description'}</p>
               </div>
+              <ul className="product__char-list d-none d-xl-block">
+                <li className="product__char-item">
+                  <strong>Категория:</strong> {category || 'Крокодилы'}
+                </li>
+                <li className="product__char-item">
+                  <strong>Бренд:</strong> {brand || 'Noname'}
+                </li>
+                <li className="product__char-item">
+                  <strong>Цвет:</strong> {color || 'Бурмалиновый'}
+                </li>
+                <li className="product__char-item">
+                  <strong>Состав:</strong> {material || 'Бетон'}
+                </li>
+              </ul>
               <strong className="product__price">
                 {price} ₽/<sub>упак.</sub>
               </strong>
